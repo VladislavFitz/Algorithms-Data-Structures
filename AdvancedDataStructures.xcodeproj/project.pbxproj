@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
+		F75AA8421D71D28A009E63C2 /* NodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AA8411D71D28A009E63C2 /* NodeContent.swift */; };
+		F767B5641D78DB1600C9529E /* TreeVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767B5631D78DB1600C9529E /* TreeVisitor.swift */; };
+		F7A81B6C1D99E391003A7B51 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B6B1D99E391003A7B51 /* Generator.swift */; };
+		F7A81B7C1D99E84A003A7B51 /* TreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AA8321D6E579E009E63C2 /* TreeTests.swift */; };
+		F7A81B7D1D9F23AC003A7B51 /* TreeVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767B5631D78DB1600C9529E /* TreeVisitor.swift */; };
+		F7A81B7E1D9F23AF003A7B51 /* NodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AA8411D71D28A009E63C2 /* NodeContent.swift */; };
+		F7A81B7F1D9F23B2003A7B51 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B6B1D99E391003A7B51 /* Generator.swift */; };
+		F7A81B801D9F23C6003A7B51 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
+		F7A81B821D9F23FE003A7B51 /* RotationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B811D9F23FE003A7B51 /* RotationDirection.swift */; };
+		F7A81B831D9F240D003A7B51 /* RotationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B811D9F23FE003A7B51 /* RotationDirection.swift */; };
+		F7A81B851D9F241E003A7B51 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B841D9F241E003A7B51 /* BinaryTreeProtocol.swift */; };
+		F7A81B861D9F243F003A7B51 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B841D9F241E003A7B51 /* BinaryTreeProtocol.swift */; };
+		F7A81B881D9F2451003A7B51 /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B871D9F2451003A7B51 /* AVLTree.swift */; };
+		F7A81B891D9F2469003A7B51 /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A81B871D9F2451003A7B51 /* AVLTree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +39,26 @@
 /* Begin PBXFileReference section */
 		F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdvancedDataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E9ADE1D56A677003FF5E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F75AA8321D6E579E009E63C2 /* TreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TreeTests.swift; path = ../AdvancedDataStructures/TreeTests.swift; sourceTree = "<group>"; };
+		F75AA8411D71D28A009E63C2 /* NodeContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeContent.swift; sourceTree = "<group>"; };
+		F767B5631D78DB1600C9529E /* TreeVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeVisitor.swift; sourceTree = "<group>"; };
+		F7A81B6B1D99E391003A7B51 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		F7A81B741D99E7F8003A7B51 /* AdvancedDataStructuresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdvancedDataStructuresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A81B781D99E7F8003A7B51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7A81B811D9F23FE003A7B51 /* RotationDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationDirection.swift; sourceTree = "<group>"; };
+		F7A81B841D9F241E003A7B51 /* BinaryTreeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeProtocol.swift; sourceTree = "<group>"; };
+		F7A81B871D9F2451003A7B51 /* AVLTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F72E9AD81D56A677003FF5E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7A81B711D99E7F8003A7B51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				F72E9ADD1D56A677003FF5E7 /* AdvancedDataStructures */,
+				F7A81B751D99E7F8003A7B51 /* AdvancedDataStructuresTests */,
 				F72E9ADC1D56A677003FF5E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */,
+				F7A81B741D99E7F8003A7B51 /* AdvancedDataStructuresTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,8 +90,23 @@
 			isa = PBXGroup;
 			children = (
 				F72E9ADE1D56A677003FF5E7 /* main.swift */,
+				F7A81B841D9F241E003A7B51 /* BinaryTreeProtocol.swift */,
+				F7A81B871D9F2451003A7B51 /* AVLTree.swift */,
+				F767B5631D78DB1600C9529E /* TreeVisitor.swift */,
+				F7A81B811D9F23FE003A7B51 /* RotationDirection.swift */,
+				F75AA8411D71D28A009E63C2 /* NodeContent.swift */,
+				F7A81B6B1D99E391003A7B51 /* Generator.swift */,
 			);
 			path = AdvancedDataStructures;
+			sourceTree = "<group>";
+		};
+		F7A81B751D99E7F8003A7B51 /* AdvancedDataStructuresTests */ = {
+			isa = PBXGroup;
+			children = (
+				F75AA8321D6E579E009E63C2 /* TreeTests.swift */,
+				F7A81B781D99E7F8003A7B51 /* Info.plist */,
+			);
+			path = AdvancedDataStructuresTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,18 +129,40 @@
 			productReference = F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */;
 			productType = "com.apple.product-type.tool";
 		};
+		F7A81B731D99E7F8003A7B51 /* AdvancedDataStructuresTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7A81B791D99E7F8003A7B51 /* Build configuration list for PBXNativeTarget "AdvancedDataStructuresTests" */;
+			buildPhases = (
+				F7A81B701D99E7F8003A7B51 /* Sources */,
+				F7A81B711D99E7F8003A7B51 /* Frameworks */,
+				F7A81B721D99E7F8003A7B51 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdvancedDataStructuresTests;
+			productName = AdvancedDataStructuresTests;
+			productReference = F7A81B741D99E7F8003A7B51 /* AdvancedDataStructuresTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F72E9AD31D56A677003FF5E7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Fitc;
 				TargetAttributes = {
 					F72E9ADA1D56A677003FF5E7 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
+					};
+					F7A81B731D99E7F8003A7B51 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -110,9 +179,20 @@
 			projectRoot = "";
 			targets = (
 				F72E9ADA1D56A677003FF5E7 /* AdvancedDataStructures */,
+				F7A81B731D99E7F8003A7B51 /* AdvancedDataStructuresTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F7A81B721D99E7F8003A7B51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F72E9AD71D56A677003FF5E7 /* Sources */ = {
@@ -120,6 +200,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */,
+				F7A81B881D9F2451003A7B51 /* AVLTree.swift in Sources */,
+				F7A81B6C1D99E391003A7B51 /* Generator.swift in Sources */,
+				F75AA8421D71D28A009E63C2 /* NodeContent.swift in Sources */,
+				F767B5641D78DB1600C9529E /* TreeVisitor.swift in Sources */,
+				F7A81B851D9F241E003A7B51 /* BinaryTreeProtocol.swift in Sources */,
+				F7A81B821D9F23FE003A7B51 /* RotationDirection.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7A81B701D99E7F8003A7B51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7A81B891D9F2469003A7B51 /* AVLTree.swift in Sources */,
+				F7A81B831D9F240D003A7B51 /* RotationDirection.swift in Sources */,
+				F7A81B861D9F243F003A7B51 /* BinaryTreeProtocol.swift in Sources */,
+				F7A81B7E1D9F23AF003A7B51 /* NodeContent.swift in Sources */,
+				F7A81B801D9F23C6003A7B51 /* main.swift in Sources */,
+				F7A81B7C1D99E84A003A7B51 /* TreeTests.swift in Sources */,
+				F7A81B7D1D9F23AC003A7B51 /* TreeVisitor.swift in Sources */,
+				F7A81B7F1D9F23B2003A7B51 /* Generator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -219,6 +321,39 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		F7A81B7A1D99E7F8003A7B51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AdvancedDataStructuresTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Fitc.AdvancedDataStructuresTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F7A81B7B1D99E7F8003A7B51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AdvancedDataStructuresTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Fitc.AdvancedDataStructuresTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -241,6 +376,16 @@
 				F72E9AE41D56A677003FF5E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7A81B791D99E7F8003A7B51 /* Build configuration list for PBXNativeTarget "AdvancedDataStructuresTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7A81B7A1D99E7F8003A7B51 /* Debug */,
+				F7A81B7B1D99E7F8003A7B51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
