@@ -9,11 +9,29 @@
 import Foundation
 
 enum AVLTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: Equatable {
-    
+
     typealias Content = NodeContent<Key, Value>
     
     case empty
     indirect case node(content: Content, left: AVLTree, right: AVLTree)
+    
+    init() {
+        self = .empty
+    }
+    
+    init(content: Content, left: AVLTree?, right: AVLTree?) {
+        self = .node(content: content, left: left ?? .empty, right: right ?? .empty)
+    }
+    
+    var content: Content? {
+        switch self {
+        case .empty:
+            return .none
+            
+        case .node(content: let content, left: _, right: _):
+            return content
+        }
+    }
     
     /** Returns true if tree is leaf (tree without subtrees)
     */
@@ -50,9 +68,9 @@ enum AVLTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: Equatable {
     /** Left subtree of tree
     */
     
-    var leftBranch: AVLTree? {
-        if case .node(content: _, left: let leftBranch, right: _) = self {
-            return leftBranch
+    var left: AVLTree? {
+        if case .node(content: _, left: let left, right: _) = self {
+            return left
         } else {
             return nil
         }
@@ -61,45 +79,19 @@ enum AVLTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: Equatable {
     /** Right subtree of tree
     */
     
-    var rightBranch: AVLTree? {
-        if case .node(content: _, left: _, right: let rightBranch) = self {
-            return rightBranch
+    var right: AVLTree? {
+        if case .node(content: _, left: _, right: let right) = self {
+            return right
         } else {
             return nil
         }
-    }
-    
-    /** Returns rotated tree
-    */
-    
-    func rotated(by direction: RotationDirection) -> AVLTree {
-        guard case .node(content: let value, left: let leftBranch, right: let rightBranch) = self else {
-            return .empty
-        }
-        
-        switch direction {
-        case .left:
-            if case .node(content: let rightBranchValue, left: let rightBranchLeft, right: let rightBranchRight) = rightBranch {
-                let intermediateLeftBranch = AVLTree.node(content: value, left: leftBranch, right: rightBranchLeft)
-                return .node(content: rightBranchValue, left: intermediateLeftBranch, right: rightBranchRight)
-            }
-            
-        case .right:
-            if case .node(content: let leftBranchValue, left: let leftBranchLeft, right: let lettBranchRight) = leftBranch {
-                let intermediateRightBranch = AVLTree.node(content: value, left: lettBranchRight, right: rightBranch)
-                return .node(content: leftBranchValue, left: leftBranchLeft, right: intermediateRightBranch)
-            }
-            
-        }
-        
-        return self
     }
     
     /** Balance factor of AVL tree. Balance factor ∈ {–1,0,+1} for balanced AVL tree.
      */
     
     var balanceFactor: Int {
-        return (rightBranch?.height ?? 0) - (leftBranch?.height ?? 0)
+        return (right?.height ?? 0) - (left?.height ?? 0)
     }
     
     /** Returns balanced AVL tree
@@ -111,13 +103,13 @@ enum AVLTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: Equatable {
         case .empty:
             return self
             
-        case .node(content: let value, left: let leftBranch, right: let rightBranch):
+        case .node(content: let value, left: let left, right: let right):
             
             switch balanceFactor {
             case 2:
-                if rightBranch.balanceFactor < 0 {
-                    let rotatedRightBranch = rightBranch.rotated(by: .right)
-                    let intermediateTree = AVLTree.node(content: value, left: leftBranch, right: rotatedRightBranch)
+                if right.balanceFactor < 0 {
+                    let rotatedright = right.rotated(by: .right)
+                    let intermediateTree = AVLTree.node(content: value, left: left, right: rotatedright)
                     return intermediateTree.rotated(by: .left)
                 } else {
                     return self.rotated(by: .left)
@@ -125,9 +117,9 @@ enum AVLTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: Equatable {
                 
             case -2:
                 
-                if leftBranch.balanceFactor > 0 {
-                    let rotatedLeftBranch = leftBranch.rotated(by: .left)
-                    let intermediateTree = AVLTree.node(content: value, left: rotatedLeftBranch, right: rightBranch)
+                if left.balanceFactor > 0 {
+                    let rotatedleft = left.rotated(by: .left)
+                    let intermediateTree = AVLTree.node(content: value, left: rotatedleft, right: right)
                     return intermediateTree.rotated(by: .right)
                 } else {
                     return self.rotated(by: .right)
@@ -152,13 +144,13 @@ extension AVLTree {
         case .empty:
             return .node(content: NodeContent(key: key, value: value), left: .empty, right: .empty)
             
-        case .node(content: let currentValue, left: let leftBranch, right: let rightBranch):
+        case .node(content: let currentValue, left: let left, right: let right):
             if currentValue.key < key {
-                let newRightBranch = rightBranch.insert(value: value, forKey: key)
-                return AVLTree.node(content: currentValue, left: leftBranch, right: newRightBranch).balanced()
+                let newright = right.insert(value: value, forKey: key)
+                return AVLTree.node(content: currentValue, left: left, right: newright).balanced()
             } else if currentValue.key > key {
-                let newLeftBranch = leftBranch.insert(value: value, forKey: key)
-                return AVLTree.node(content: currentValue, left: newLeftBranch, right: rightBranch).balanced()
+                let newleft = left.insert(value: value, forKey: key)
+                return AVLTree.node(content: currentValue, left: newleft, right: right).balanced()
             } else {
                 return self
             }
@@ -169,7 +161,7 @@ extension AVLTree {
     func findMin() -> AVLTree {
         switch self {
         case .node(content: _, left: .node, right: _):
-            return leftBranch!.findMin()
+            return left!.findMin()
         default:
             return self
         }
@@ -178,7 +170,7 @@ extension AVLTree {
     func findMax() -> AVLTree {
         switch self {
         case .node(content: _, left: _, right: .node):
-            return rightBranch!.findMax()
+            return right!.findMax()
         default:
             return self
         }
@@ -231,8 +223,8 @@ extension AVLTree: CustomStringConvertible {
         switch self {
         case .empty:
             return "nil"
-        case .node(content: let value, left: let leftBranch, right: let rightBranch):
-            return "\(value.key) : [ \(leftBranch) | \(rightBranch) ]"
+        case .node(content: let value, left: let left, right: let right):
+            return "\(value.key) : [ \(left) | \(right) ]"
         }
     }
     

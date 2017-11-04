@@ -10,12 +10,16 @@ import Foundation
 
 protocol BinaryTreeProtocol {
     
-    associatedtype Key: Comparable, Equatable
+    associatedtype Key: Comparable
     associatedtype Value
     associatedtype Content = NodeContent<Key, Value>
     
-    var leftBranch: Self? { get }
-    var rightBranch: Self? { get }
+    init()
+    init(content: Content, left: Self?, right: Self?)
+    
+    var content: Content? { get }
+    var left: Self? { get }
+    var right: Self? { get }
     var height: Int { get }
     var value: Value? { get }
     var key: Key? { get }
@@ -34,18 +38,26 @@ protocol BinaryTreeProtocol {
 
 extension BinaryTreeProtocol {
     
+    static var none: Self {
+        return Self()
+    }
+    
+    static func with(content: Content, left: Self?, right: Self?) -> Self {
+        return Self(content: content, left: left, right: right)
+    }
+    
     /** Nodes count
      */
     
     var count: Int {
-        return (leftBranch?.count ?? 0) + (rightBranch?.count ?? 0) + 1
+        return (left?.count ?? 0) + (right?.count ?? 0) + 1
     }
     
     /** Height of tree in nodes
      */
     
     var height: Int {
-        return max((leftBranch?.height ?? 0), (rightBranch?.height ?? 0)) + 1
+        return max((left?.height ?? 0), (right?.height ?? 0)) + 1
     }
     
     subscript(key: Key) -> Value? {
@@ -61,9 +73,23 @@ extension BinaryTreeProtocol {
         if key == currentKey {
             return self.value
         } else if key < currentKey {
-            return leftBranch?.value(forKey: key)
+            return left?.value(forKey: key)
         } else {
-            return rightBranch?.value(forKey: key)
+            return right?.value(forKey: key)
+        }
+
+    }
+    
+    func rotated(by direction: RotationDirection) -> Self {
+        
+        switch direction {
+        case .left:
+            let lb: Self = .with(content: content!, left: left, right: right?.left)
+            return .with(content: right!.content!, left: lb, right: right?.right)
+            
+        case .right:
+            let rb: Self = .with(content: content!, left: left?.right, right: right)
+            return .with(content: left!.content!, left: left?.left, right: rb)
         }
 
     }
@@ -73,15 +99,15 @@ extension BinaryTreeProtocol {
             return true
         }
         
-        if let leftBranchValue = leftBranch?.value as? NodeContent<Key, Value> , leftBranchValue.key >= value.key {
+        if let leftValue = left?.value as? NodeContent<Key, Value> , leftValue.key >= value.key {
             return false
         }
         
-        if let rightBranchValue = rightBranch?.value as? NodeContent<Key, Value> , rightBranchValue.key < value.key {
+        if let rightValue = right?.value as? NodeContent<Key, Value> , rightValue.key < value.key {
             return false
         }
         
-        return (leftBranch?.checkCorrectness() ?? true) && (rightBranch?.checkCorrectness() ?? true)
+        return (left?.checkCorrectness() ?? true) && (right?.checkCorrectness() ?? true)
     }
     
 }

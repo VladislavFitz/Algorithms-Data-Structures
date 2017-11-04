@@ -22,11 +22,11 @@ struct PreOrderTreeTraversal: TreeTraversal {
             print(value)
         }
         
-        if let leftBranch = tree.leftBranch {
+        if let leftBranch = tree.left {
             traverse(leftBranch)
         }
         
-        if let rightBranch = tree.rightBranch {
+        if let rightBranch = tree.right {
             traverse(rightBranch)
         }
         
@@ -38,7 +38,7 @@ struct InOrderTreeTraversal: TreeTraversal {
     
     static func traverse<Tree: BinaryTreeProtocol>(_ tree: Tree) {
         
-        if let leftBranch = tree.leftBranch {
+        if let leftBranch = tree.left {
             traverse(leftBranch)
         }
         
@@ -46,7 +46,7 @@ struct InOrderTreeTraversal: TreeTraversal {
             print(value)
         }
         
-        if let rightBranch = tree.rightBranch {
+        if let rightBranch = tree.right {
             traverse(rightBranch)
         }
         
@@ -58,11 +58,11 @@ struct PostOrderTreeTraversal: TreeTraversal {
     
     static func traverse<Tree: BinaryTreeProtocol>(_ tree: Tree) {
         
-        if let leftBranch = tree.leftBranch {
+        if let leftBranch = tree.left {
             traverse(leftBranch)
         }
         
-        if let rightBranch = tree.rightBranch {
+        if let rightBranch = tree.right {
             traverse(rightBranch)
         }
         
