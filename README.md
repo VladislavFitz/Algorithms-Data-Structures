@@ -1,5 +1,6 @@
 # Algorithms & Data Structures
-Algorithms and data structures implemented in Swift 4
+Algorithms and data structures implemented in Swift 4 
+---
 Currently implemented:
 ## Sort algorithms:
 - Bubble sort
