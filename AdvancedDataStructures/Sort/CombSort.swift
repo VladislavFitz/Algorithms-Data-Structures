@@ -21,7 +21,7 @@ struct CombSort<Element: Comparable>: SortAlgorithm {
         var step = mutableArray.count - 1
         
         while !isSorted {
-                        
+            
             if step == 1 {
                 isSorted = true
             }

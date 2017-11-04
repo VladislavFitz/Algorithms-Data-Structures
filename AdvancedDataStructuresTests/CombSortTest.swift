@@ -14,7 +14,7 @@ class CombSortTests: XCTestCase {
     
     func testCorrectness() {
         
-        var shuffledArray = Array(0..<1000)//[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]//
+        var shuffledArray = Array(0..<1000)
         shuffledArray.shuffle()
         
         let sortedArray = CombSort<Int>().sort(shuffledArray)

@@ -18,38 +18,35 @@ struct ShellSort<Element: Comparable>: SortAlgorithm {
     
     func sort(_ array: [Element]) -> [Element] {
         
-        var array = array
-//
-//        for i in 0..<(array.count/n + 1) {
-//
-//        }
-//
-//        for lastUnsortedIndex in stride(from: 0, to: array.endIndex, by: n) {
-//
-//            var insertedIndex = lastUnsortedIndex
-//
-//            stride(from: <#T##Strideable#>, to: <#T##Strideable#>, by: <#T##Comparable & SignedNumeric#>)
-//
-//        }
-//
-//        for lastUnsortedIndex in 0..<array.endIndex {
-//
-//            var insertedIndex = lastUnsortedIndex
-//
-//            for sortedIndex in (array.startIndex..<lastUnsortedIndex).reversed() {
-//
-//                if array[sortedIndex] > array[insertedIndex] {
-//                    array.swapAt(sortedIndex, insertedIndex)
-//                    insertedIndex = sortedIndex
-//                } else {
-//                    break
-//                }
-//
-//            }
-//
-//        }
+        var mutableArray = array
         
-        return array
+        var step = n
+    
+        while step != 0 {
+            
+            for lastUnsortedIndex in stride(from: mutableArray.startIndex, to: mutableArray.endIndex, by: step) {
+                
+                var insertedIndex = lastUnsortedIndex
+                
+                for sortedIndex in stride(from: mutableArray.startIndex, to: lastUnsortedIndex, by: step).reversed() {
+                    
+                    if mutableArray[sortedIndex] > mutableArray[insertedIndex] {
+                        mutableArray.swapAt(sortedIndex, insertedIndex)
+                        insertedIndex = sortedIndex
+                    } else {
+                        break
+                    }
+                    
+                }
+                
+            }
+            
+            step = step - 1
+
+        }
+        
+        
+        return mutableArray
 
     }
     
