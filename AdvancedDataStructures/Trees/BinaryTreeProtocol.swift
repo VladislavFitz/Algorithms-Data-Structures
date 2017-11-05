@@ -12,19 +12,19 @@ protocol BinaryTreeProtocol {
     
     associatedtype Key: Comparable
     associatedtype Value
-    associatedtype Content = NodeContent<Key, Value>
     
     init()
-    init(content: Content, left: Self?, right: Self?)
+    init(key: Key, value: Value, left: Self?, right: Self?)
     
-    var content: Content? { get }
+    var key: Key? { get }
+    var value: Value? { get }
+
     var left: Self? { get }
     var right: Self? { get }
+    
     var height: Int { get }
-    var value: Value? { get }
-    var key: Key? { get }
-    var isLeaf: Bool { get }
     var count: Int { get }
+    var isLeaf: Bool { get }
     
     subscript(key: Key) -> Value? { get }
     
@@ -42,8 +42,8 @@ extension BinaryTreeProtocol {
         return Self()
     }
     
-    static func with(content: Content, left: Self?, right: Self?) -> Self {
-        return Self(content: content, left: left, right: right)
+    static func with(key: Key, value: Value, left: Self?, right: Self?) -> Self {
+        return Self(key: key, value: value, left: left, right: right)
     }
     
     /** Nodes count
@@ -84,26 +84,27 @@ extension BinaryTreeProtocol {
         
         switch direction {
         case .left:
-            let lb: Self = .with(content: content!, left: left, right: right?.left)
-            return .with(content: right!.content!, left: lb, right: right?.right)
+            let lb: Self = .with(key: key!, value: value!, left: left, right: right?.left)
+            return .with(key: right!.key!, value: right!.value!, left: lb, right: right?.right)
             
         case .right:
-            let rb: Self = .with(content: content!, left: left?.right, right: right)
-            return .with(content: left!.content!, left: left?.left, right: rb)
+            let rb: Self = .with(key: key!, value: value!, left: left?.right, right: right)
+            return .with(key: left!.key!, value: left!.value!,  left: left?.left, right: rb)
         }
 
     }
     
     func checkCorrectness() -> Bool {
-        guard let value = self.value as? NodeContent<Key, Value> else {
+        
+        guard let key = self.key else {
             return true
         }
         
-        if let leftValue = left?.value as? NodeContent<Key, Value> , leftValue.key >= value.key {
+        if let leftKey = self.left?.key, leftKey >= key {
             return false
         }
         
-        if let rightValue = right?.value as? NodeContent<Key, Value> , rightValue.key < value.key {
+        if let rightKey = self.right?.key, rightKey < key {
             return false
         }
         

@@ -192,7 +192,7 @@ class BinaryTree<Key: Comparable, Payload> {
                     return parent?.root()
                     
                 case .root:
-                    return parent?.root()
+                    return .none
                 }
                 
             case (let leftSubtree, .none):
