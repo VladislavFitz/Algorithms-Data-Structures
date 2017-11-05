@@ -18,6 +18,7 @@ class BinaryTree<Key: Comparable, Payload> {
     
     var key: Key
     var payload: Payload
+    
     var left: BinaryTree? {
         didSet {
             left?.parent = self
@@ -206,7 +207,7 @@ class BinaryTree<Key: Comparable, Payload> {
                     return parent?.root()
                     
                 case .root:
-                    return parent?.root()
+                    return leftSubtree
                 }
                 
             case (.none, let rightSubtree):
@@ -221,16 +222,16 @@ class BinaryTree<Key: Comparable, Payload> {
                     return parent?.root()
                     
                 case .root:
-                    return parent?.root()
+                    return rightSubtree
                 }
                 
-            case (let leftSubtree, let rightSubtree):
+            case (.some, .some):
                 let nextElement = self.next()!
-                _ = removeValue(for: nextElement.key)
-                nextElement.left = leftSubtree
-                nextElement.right = rightSubtree
-                nextElement.parent = parent
-                return nextElement.root()
+                let updatedTree = removeValue(for: nextElement.key)
+                let nodeToRemove = updatedTree?.findNode(for: self.key)
+                nodeToRemove?.key = nextElement.key
+                nodeToRemove?.payload = nextElement.payload
+                return nodeToRemove?.root()
             }
             
         } else if key < self.key {

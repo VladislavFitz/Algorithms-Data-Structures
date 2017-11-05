@@ -13,8 +13,7 @@ import AdvancedDataStructures
 class BinaryTreeTests: XCTestCase {
     
     func generateTree(count: Int = 10) -> BinaryTree<Int, Void> {
-        let shuffledArray = [4, 5, 0, 3, 9, 1, 7, 2, 8, 6] //Array(0..<count)
-//        shuffledArray.shuffle()
+        let shuffledArray = [4, 5, 0, 3, 9, 1, 7, 2, 8, 6].shuffled()
         
         let treeArray = shuffledArray.map({ (key: $0, value: ()) })
         
@@ -76,31 +75,37 @@ class BinaryTreeTests: XCTestCase {
     }
     
     func testRemove() {
+        
         var inOrderTraversal = InOrderTreeTraversal<Int, Void>()
         var elements: [Int] = []
         inOrderTraversal.visit = { elements.append($0.key) }
 
         var tree = generateTree()
+        print(tree)
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
         tree = tree.removeValue(for: 5)!
+        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 6, 7, 8, 9])
         
         tree = tree.removeValue(for: 9)!
+        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 6, 7, 8])
 
         
         tree = tree.removeValue(for: 4)!
+        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 6, 7, 8])
         
         tree = tree.removeValue(for: 2)!
+        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 3, 6, 7, 8])

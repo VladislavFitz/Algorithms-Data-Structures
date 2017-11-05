@@ -22,6 +22,12 @@ extension MutableCollection {
         }
     }
     
+    func shuffled() -> Self {
+        var collection = self
+        collection.shuffle()
+        return collection
+    }
+    
 }
 
 struct Generator {
