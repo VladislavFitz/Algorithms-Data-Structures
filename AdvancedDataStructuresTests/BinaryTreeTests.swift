@@ -12,20 +12,18 @@ import AdvancedDataStructures
 
 class BinaryTreeTests: XCTestCase {
     
-    func testCorrectness() {
-        var shuffledArray = Array(0..<10)
-        shuffledArray.shuffle()
+    func generateTree(count: Int = 10) -> BinaryTree<Int, Void> {
+        let shuffledArray = [4, 5, 0, 3, 9, 1, 7, 2, 8, 6] //Array(0..<count)
+//        shuffledArray.shuffle()
         
         let treeArray = shuffledArray.map({ (key: $0, value: ()) })
         
-        guard let tree = BinaryTree(array: treeArray) else {
-            XCTFail()
-            return
-        }
+        return BinaryTree(array: treeArray)!
+    }
+    
+    func testCorrectness() {
         
-        let treeString = BinaryTreePrinter.treeString(tree, using: { (tree) in
-            return ("\(tree.key)", tree.left, tree.right)
-        })
+        let tree = generateTree()
         
         var elements: [Int] = []
         var inOrderTraversal = InOrderTreeTraversal<Int, Void>()
@@ -46,23 +44,67 @@ class BinaryTreeTests: XCTestCase {
     }
     
     func testFindMin() {
-        XCTAssertTrue(true)
+        
+        let tree = generateTree()
+
+        XCTAssertEqual(tree.min().key, 0)
     }
     
     func testFindMax() {
-        XCTAssertTrue(true)
+        
+        let tree = generateTree()
+
+        XCTAssertEqual(tree.max().key, 9)
     }
     
     func testFindPrevious() {
-        XCTAssertTrue(true)
+        
+        let tree = generateTree()
+        
+        let node = tree.findNode(for: 5)
+        
+        XCTAssertEqual(node?.previous()?.key, 4)
+
     }
     
     func testFindNext() {
-        XCTAssertTrue(true)
+        let tree = generateTree()
+        
+        let node = tree.findNode(for: 5)
+
+        XCTAssertEqual(node?.next()?.key, 6)
     }
     
     func testRemove() {
-        XCTAssertTrue(true)
+        var inOrderTraversal = InOrderTreeTraversal<Int, Void>()
+        var elements: [Int] = []
+        inOrderTraversal.visit = { elements.append($0.key) }
+
+        var tree = generateTree()
+        inOrderTraversal.traverse(tree)
+        XCTAssertEqual(elements, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+        tree = tree.removeValue(for: 5)!
+        elements.removeAll()
+        inOrderTraversal.traverse(tree)
+        XCTAssertEqual(elements, [0, 1, 2, 3, 4, 6, 7, 8, 9])
+        
+        tree = tree.removeValue(for: 9)!
+        elements.removeAll()
+        inOrderTraversal.traverse(tree)
+        XCTAssertEqual(elements, [0, 1, 2, 3, 4, 6, 7, 8])
+
+        
+        tree = tree.removeValue(for: 4)!
+        elements.removeAll()
+        inOrderTraversal.traverse(tree)
+        XCTAssertEqual(elements, [0, 1, 2, 3, 6, 7, 8])
+        
+        tree = tree.removeValue(for: 2)!
+        elements.removeAll()
+        inOrderTraversal.traverse(tree)
+        XCTAssertEqual(elements, [0, 1, 3, 6, 7, 8])
+
     }
     
     func testSmallLeftTurn() {

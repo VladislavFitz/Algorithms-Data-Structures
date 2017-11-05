@@ -16,10 +16,20 @@ enum NodePosition {
 
 class BinaryTree<Key: Comparable, Payload> {
     
-    let key: Key
+    var key: Key
     var payload: Payload
-    var left: BinaryTree?
-    var right: BinaryTree?
+    var left: BinaryTree? {
+        didSet {
+            left?.parent = self
+        }
+    }
+    
+    var right: BinaryTree? {
+        didSet {
+            right?.parent = self
+        }
+    }
+    
     weak var parent: BinaryTree?
     
     var nodePosition: NodePosition {
@@ -148,15 +158,23 @@ class BinaryTree<Key: Comparable, Payload> {
         
     }
     
+    func root() -> BinaryTree {
+        var current: BinaryTree = self
+        
+        while let parent = current.parent {
+            current = parent
+        }
+        
+        return current
+    }
+    
     func height() -> Int {
         let leftHeight = left?.height() ?? 0
         let rightHeight = right?.height() ?? 0
         return Swift.max(leftHeight, rightHeight) + 1
     }
     
-    func removeValue(for key: Key) {
-        
-        guard let parent = self.parent else { return }
+    func removeValue(for key: Key) -> BinaryTree? {
         
         if key == self.key {
             
@@ -165,49 +183,60 @@ class BinaryTree<Key: Comparable, Payload> {
                 
                 switch nodePosition {
                 case .leftSubtree:
-                    parent.left = .none
+                    parent?.left = .none
+                    return parent?.root()
                     
                 case .rightSubtree:
-                    parent.right = .none
+                    parent?.right = .none
+                    return parent?.root()
                     
                 case .root:
-                    break
+                    return parent?.root()
                 }
                 
             case (let leftSubtree, .none):
                 
                 switch nodePosition {
                 case .leftSubtree:
-                    parent.left = leftSubtree
+                    parent?.left = leftSubtree
+                    return parent?.root()
                     
                 case .rightSubtree:
-                    parent.right = leftSubtree
+                    parent?.right = leftSubtree
+                    return parent?.root()
                     
                 case .root:
-                    break
+                    return parent?.root()
                 }
                 
             case (.none, let rightSubtree):
                 
                 switch nodePosition {
                 case .leftSubtree:
-                    parent.left = rightSubtree
+                    parent?.left = rightSubtree
+                    return parent?.root()
                     
                 case .rightSubtree:
-                    parent.right = rightSubtree
+                    parent?.right = rightSubtree
+                    return parent?.root()
                     
                 case .root:
-                    break
+                    return parent?.root()
                 }
                 
             case (let leftSubtree, let rightSubtree):
-                break
+                let nextElement = self.next()!
+                _ = removeValue(for: nextElement.key)
+                nextElement.left = leftSubtree
+                nextElement.right = rightSubtree
+                nextElement.parent = parent
+                return nextElement.root()
             }
             
         } else if key < self.key {
-            left?.removeValue(for: key)
-        } else if key > self.key {
-            right?.removeValue(for: key)
+            return left?.removeValue(for: key) ?? self.root()
+        } else {
+            return right?.removeValue(for: key) ?? self.root()
         }
         
     }
@@ -231,31 +260,29 @@ class BinaryTree<Key: Comparable, Payload> {
         
     }
     
+    
+    func findNode(for key: Key) -> BinaryTree? {
+        
+        if key == self.key {
+            return self
+        } else if key > self.key {
+            return self.right?.findNode(for: key)
+        } else {
+            return self.left?.findNode(for: key)
+        }
+        
+    }
+    
 }
 
 extension BinaryTree: CustomStringConvertible {
     
-//    var description: String {
-//        return "\(self.key)"
-//        let currentHeight = height() * 2
-//        let space = String(repeating: " ", count: currentHeight)
-//        let childSpace = String(repeating: " ", count: currentHeight/2)
-//        let childNilDescription = childSpace + "nil" + childSpace
-//        let leftBranch = left.flatMap({ $0.description }) ?? childNilDescription
-//        let rightBranch = right.flatMap({ $0.description }) ?? childNilDescription
-//        return space + "\(self.key)" + space + "\n" + leftBranch + rightBranch + "\n"
-//    }
-    
     var description: String {
-        if left != nil && right != nil {
-            return "\(value) => [left: \(left!), right: \(right!)]"
-        } else if left != nil && right == nil {
-            return "\(value) => [left: \(left!), right:]"
-        } else if left == nil && right != nil {
-            return "\(value) => [left:, right: \(right!)]"
-        } else {
-            return "\(value)"
-        }
+        
+        return BinaryTreePrinter.treeString(self, using: { (tree) in
+            return ("\(tree.key)", tree.left, tree.right)
+        })
+        
     }
     
     func draw() {
