@@ -246,16 +246,19 @@ class BinaryTree<Key: Comparable, Payload> {
         
         switch direction {
         case .left:
+            guard let rightBranch = self.right else { return self }
             
-            let leftBranch = BinaryTree(key: key, payload: payload, left: left, right: right?.left, parent: right)
+            let leftBranch = BinaryTree(key: key, payload: payload, left: left, right: rightBranch.left, parent: right)
             
-            return BinaryTree(key: right!.key, payload: right!.payload, left: leftBranch, right: right!.right, parent: .none)
+            return BinaryTree(key: rightBranch.key, payload: rightBranch.payload, left: leftBranch, right: rightBranch.right, parent: parent)
             
         case .right:
             
-            let rightBranch = BinaryTree(key: key, payload: payload, left: left?.right, right: right, parent: left)
+            guard let leftBranch = self.left else { return self }
             
-            return BinaryTree(key: left!.key, payload: left!.payload, left: left?.left, right: rightBranch, parent: .none)
+            let rightBranch = BinaryTree(key: key, payload: payload, left: leftBranch.right, right: right, parent: left)
+            
+            return BinaryTree(key: left!.key, payload: leftBranch.payload, left: leftBranch.left, right: rightBranch, parent: parent)
             
         }
         

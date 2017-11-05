@@ -81,53 +81,76 @@ class BinaryTreeTests: XCTestCase {
         inOrderTraversal.visit = { elements.append($0.key) }
 
         var tree = generateTree()
-        print(tree)
+//        print(tree)
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
         tree = tree.removeValue(for: 5)!
-        print(tree)
+//        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 6, 7, 8, 9])
         
         tree = tree.removeValue(for: 9)!
-        print(tree)
+//        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 6, 7, 8])
 
         
         tree = tree.removeValue(for: 4)!
-        print(tree)
+//        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 6, 7, 8])
         
         tree = tree.removeValue(for: 2)!
-        print(tree)
+//        print(tree)
         elements.removeAll()
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 3, 6, 7, 8])
 
     }
     
-    func testSmallLeftTurn() {
-        XCTAssertTrue(true)
-    }
-    
-    func testSmallRightTurn() {
-        XCTAssertTrue(true)
-    }
-    
-    func testBigLeftTurn() {
-        XCTAssertTrue(true)
+    func testLeftTurn() {
+        
+        var preOrderTraversal = PreOrderTreeTraversal<Int, Void>()
+        var elements: [Int] = []
+        preOrderTraversal.visit = { elements.append($0.key) }
+        
+        let treeArray = [3, 1, 5, 0, 2, 4, 6].map({ (key: $0, value: ()) })
+        var tree = BinaryTree(array: treeArray)!
+        
+        preOrderTraversal.traverse(tree)
+        XCTAssertEqual([3, 1, 0, 2, 5, 4, 6], elements)
+        
+        elements.removeAll()
+
+        
+        tree = tree.rotated(by: .left)
+        preOrderTraversal.traverse(tree)
+        XCTAssertEqual([5, 3, 1, 0, 2, 4, 6], elements)
         
     }
     
-    func testBigRightTurn() {
-        XCTAssertTrue(true)
+    func testRightTurn() {
         
+        var preOrderTraversal = PreOrderTreeTraversal<Int, Void>()
+        var elements: [Int] = []
+        preOrderTraversal.visit = { elements.append($0.key) }
+        
+        let treeArray = [3, 1, 5, 0, 2, 4, 6].map({ (key: $0, value: ()) })
+        var tree = BinaryTree(array: treeArray)!
+        
+        preOrderTraversal.traverse(tree)
+        XCTAssertEqual([3, 1, 0, 2, 5, 4, 6], elements)
+        
+        elements.removeAll()
+        
+        tree = tree.rotated(by: .right)
+        preOrderTraversal.traverse(tree)
+        XCTAssertEqual([1, 0, 3, 2, 5, 4, 6], elements)
+
     }
     
 }
