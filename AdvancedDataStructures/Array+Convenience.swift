@@ -12,6 +12,8 @@ extension Array where Element: Comparable {
     
     var isSorted: Bool {
         
+        if isEmpty { return true }
+        
         for index in 1..<self.endIndex {
             if self[index-1] > self[index] {
                 return false
