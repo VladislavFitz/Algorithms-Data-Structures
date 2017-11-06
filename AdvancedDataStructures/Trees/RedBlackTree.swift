@@ -12,34 +12,36 @@ enum Color {
     case red, black
 }
 
-final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: Equatable {
+final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol {
     
-    typealias Content = NodeContent<Key, Value>
-    
-    var content: Content?
+    var key: Key?
+    var value: Value?
     var color: Color
     weak var parent: RedBlackTree?
     var left: RedBlackTree?
     var right: RedBlackTree?
     
     init() {
-        self.content = nil
+        self.key = nil
+        self.value = nil
         self.left = nil
         self.right = nil
         self.parent = nil
         self.color = .black
     }
     
-    init(content: Content, left: RedBlackTree?, right: RedBlackTree?) {
-        self.content = content
+    init(key: Key, value: Value, left: RedBlackTree?, right: RedBlackTree?) {
+        self.key = key
+        self.value = value
         self.left = left
         self.right = right
         self.parent = nil
         self.color = .black
     }
     
-    init(content: Content, left: RedBlackTree?, right: RedBlackTree?, color: Color, parent: RedBlackTree? = .none) {
-        self.content = content
+    init(key: Key, value: Value, left: RedBlackTree?, right: RedBlackTree?, color: Color, parent: RedBlackTree? = .none) {
+        self.key = key
+        self.value = value
         self.left = left
         self.right = right
         self.color = color
@@ -66,17 +68,10 @@ final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol where Key: 
         return self
     }
     
-    func with(content: Content) -> RedBlackTree {
-        self.content = content
+    func with(key: Key, value: Value) -> RedBlackTree {
+        self.key = key
+        self.value = value
         return self
-    }
-    
-    var key: Key? {
-        return content?.key
-    }
-    
-    var value: Value? {
-        return content?.value
     }
     
     var isLeaf: Bool {
@@ -121,33 +116,32 @@ extension RedBlackTree {
     
     func insert(value: Value, forKey key: Key) -> RedBlackTree {
         
-        guard let content = self.content else { return self }
-        let newContent = Content(key: key, value: value)
+        guard let currentKey = self.key else { return self }
         
         let result: RedBlackTree
         var shouldCheckBalance: Bool = false
         
-        if content.key < key {
+        if key < currentKey {
             
             let updatedRight: RedBlackTree
             
             if let right = self.right {
                 updatedRight = right.insert(value: value, forKey: key)
             } else {
-                updatedRight = RedBlackTree(content: newContent, left: .none, right: .none, color: .red, parent: self)
+                updatedRight = RedBlackTree(key: key, value: value, left: .none, right: .none, color: .red, parent: self)
                 shouldCheckBalance = true
             }
             
             result = self.with(right: updatedRight)
             
-        } else if content.key > key {
+        } else if key > key {
             
             let updatedLeft: RedBlackTree
             
             if let left = self.left {
                 updatedLeft = left.insert(value: value, forKey: key)
             } else {
-                updatedLeft = RedBlackTree(content: newContent, left: .none, right: .none, color: .red, parent: self)
+                updatedLeft = RedBlackTree(key: key, value: value, left: .none, right: .none, color: .red, parent: self)
                 shouldCheckBalance = true
             }
             
@@ -155,7 +149,7 @@ extension RedBlackTree {
             
         } else {
             
-            result = self.with(content: newContent)
+            result = self.with(key: key, value: value)
             
         }
         

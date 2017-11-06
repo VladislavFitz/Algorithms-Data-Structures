@@ -82,7 +82,7 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
     /** Returns balanced AVL tree
     */
     
-    func balanced() -> AVLTree {
+    fileprivate func balanced() -> AVLTree {
         
         switch self {
         case .empty:

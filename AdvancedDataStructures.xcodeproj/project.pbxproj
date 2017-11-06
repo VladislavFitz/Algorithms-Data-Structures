@@ -192,11 +192,11 @@
 			isa = PBXGroup;
 			children = (
 				5113A2471FAF4E370081B583 /* Traversal */,
+				F792A41C1F9EA57F00E1FFD0 /* BinaryTree.swift */,
 				F7510E901DADA754003EC1E4 /* AVLTree.swift */,
 				F787286F1E664341006FAEEF /* RedBlackTree.swift */,
 				F7510E911DADA754003EC1E4 /* BinaryTreeProtocol.swift */,
 				F7510E921DADA754003EC1E4 /* RotationDirection.swift */,
-				F792A41C1F9EA57F00E1FFD0 /* BinaryTree.swift */,
 			);
 			path = Trees;
 			sourceTree = "<group>";
