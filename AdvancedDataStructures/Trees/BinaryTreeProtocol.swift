@@ -24,6 +24,9 @@ protocol BinaryTreeProtocol {
     
     var height: Int { get }
     var count: Int { get }
+    
+    /** Returns true if tree is leaf (tree without subtrees)
+     */
     var isLeaf: Bool { get }
     
     subscript(key: Key) -> Value? { get }
@@ -34,6 +37,10 @@ protocol BinaryTreeProtocol {
     func rotated(by direction: RotationDirection) -> Self
     
     func checkCorrectness() -> Bool
+    
+    func findMin() -> Self
+    func findMax() -> Self
+
 }
 
 extension BinaryTreeProtocol {
@@ -92,6 +99,51 @@ extension BinaryTreeProtocol {
             return .with(key: left!.key!, value: left!.value!,  left: left?.left, right: rb)
         }
 
+    }
+    
+    func findMin() -> Self {
+        var minNode = self
+        
+        while let leftBranch = minNode.left {
+            minNode = leftBranch
+        }
+        
+        return minNode
+    }
+    
+    func findMax() -> Self {
+        var maxNode = self
+        
+        while let rightBranch = maxNode.right {
+            maxNode = rightBranch
+        }
+        
+        return maxNode
+    }
+    
+//    func findNode(for key: Key) -> Self? {
+//
+//        var currentNode = self
+//
+//        if key == currentNode.key {
+//            return self
+//        } else if key > currentNode.key {
+//            if let rightBranch = currentNode.right {
+//                currentNode = rightBranch
+//            } else {
+//                return .none
+//            }
+//        } else {
+//            if let leftBranch = currentNode.left {
+//
+//            }
+//            return self.left?.findNode(for: key)
+//        }
+//
+//    }
+    
+    var isLeaf: Bool {
+        return left == nil && right == nil
     }
     
     func checkCorrectness() -> Bool {

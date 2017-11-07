@@ -46,14 +46,14 @@ class BinaryTreeTests: XCTestCase {
         
         let tree = generateTree()
 
-        XCTAssertEqual(tree.min().key, 0)
+        XCTAssertEqual(tree.findMin().key, 0)
     }
     
     func testFindMax() {
         
         let tree = generateTree()
 
-        XCTAssertEqual(tree.max().key, 9)
+        XCTAssertEqual(tree.findMax().key, 9)
     }
     
     func testFindPrevious() {

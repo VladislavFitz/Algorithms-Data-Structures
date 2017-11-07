@@ -21,15 +21,11 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
         self = .node(key: key, value: value, left: left ?? .empty, right: right ?? .empty)
     }
     
-    /** Returns true if tree is leaf (tree without subtrees)
-    */
-    
-    var isLeaf: Bool {
-        switch self {
-        case .node(key: _, value: _, left: .empty, right: .empty):
-            return true
-        default:
-            return false
+    var key: Key? {
+        if case .node(key: let key, value: _, left: _, right: _) = self {
+            return key
+        } else {
+            return nil
         }
     }
         
@@ -40,15 +36,6 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
             return nil
         }
     }
-    
-    var key: Key? {
-        if case .node(key: let key, value: _, left: _, right: _) = self {
-            return key
-        } else {
-            return nil
-        }
-    }
-
     
     /** Left subtree of tree
     */
@@ -148,25 +135,7 @@ extension AVLTree {
         }
         
     }
-    
-    func findMin() -> AVLTree {
-        switch self {
-        case .node(key: _, value: _, left: .node, right: _):
-            return left!.findMin()
-        default:
-            return self
-        }
-    }
-    
-    func findMax() -> AVLTree {
-        switch self {
-        case .node(key: _, value: _, left: _, right: .node):
-            return right!.findMax()
-        default:
-            return self
-        }
-    }
-    
+        
     func removeValueFor(key: Key) -> AVLTree {
         
         func removeMin(tree: AVLTree) -> AVLTree {
