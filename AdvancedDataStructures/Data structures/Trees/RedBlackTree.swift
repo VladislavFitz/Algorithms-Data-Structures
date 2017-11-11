@@ -12,7 +12,7 @@ enum Color {
     case red, black
 }
 
-final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol {
+final class RedBlackTree<Key: Comparable, Value>: BinaryTreeWithParentProtocol {
     
     var key: Key
     var value: Value
@@ -39,6 +39,15 @@ final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol {
         self.parent = parent
     }
     
+    init(key: Key, value: Value, left: RedBlackTree<Key, Value>?, right: RedBlackTree<Key, Value>?, parent: RedBlackTree<Key, Value>?) {
+        self.key = key
+        self.value = value
+        self.left = left
+        self.right = right
+        self.color = .black
+        self.parent = parent
+    }
+
     func with(parent: RedBlackTree?) -> RedBlackTree {
         self.parent = parent
         return self
@@ -65,45 +74,9 @@ final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol {
         return self
     }
     
-    var isLeaf: Bool {
-        return left == nil && right == nil
-    }
-    
 }
 
 extension RedBlackTree {
-    
-    func value(forKey key: Key) -> Value? {
-        return .none
-    }
-    
-    /*
-    func parentOfNode(for key: Key, parent: RedBlackTree? = .none) -> RedBlackTree? {
-        guard let currentKey = self.key else { return .none }
-        
-        if currentKey < key {
-            return right?.parentOfNode(for: key, parent: self)
-        } else if currentKey > key {
-            return left?.parentOfNode(for: key, parent: self)
-        } else {
-            return parent
-        }
-    }*/
-    
-    var brother: RedBlackTree? {
-        guard let parent = self.parent else { return .none }
-        
-        if parent.left?.key == self.key {
-            return parent.right
-        } else {
-            return parent.left
-        }
-        
-    }
-    
-    var uncle: RedBlackTree? {
-        return parent?.brother
-    }
     
     func set(_ value: Value, for key: Key) -> RedBlackTree {
         
@@ -194,8 +167,19 @@ extension RedBlackTree {
         return self
     }
     
-    func rotated(by direction: RotationDirection) -> RedBlackTree {
-        return self
+}
+
+//MARK: - CustomStringConvertible
+
+extension RedBlackTree: CustomStringConvertible {
+    
+    var description: String {
+        
+        return BinaryTreePrinter.treeString(self, using: { (tree) in
+            return ("\(tree.key) [\(tree.color)]", tree.left, tree.right)
+        })
+        
     }
     
 }
+

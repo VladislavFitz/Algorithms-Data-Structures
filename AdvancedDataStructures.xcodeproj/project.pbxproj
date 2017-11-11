@@ -241,9 +241,9 @@
 		F7510E8F1DADA754003EC1E4 /* Trees */ = {
 			isa = PBXGroup;
 			children = (
+				5113A2471FAF4E370081B583 /* Traversal */,
 				5113A2441FAF4A6D0081B583 /* BinaryTreePrinter.swift */,
 				516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */,
-				5113A2471FAF4E370081B583 /* Traversal */,
 				F7510E921DADA754003EC1E4 /* RotationDirection.swift */,
 				51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */,
 				516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */,

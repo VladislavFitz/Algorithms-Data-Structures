@@ -116,3 +116,23 @@ extension BinaryTreeWithParentProtocol {
     }
     
 }
+
+extension BinaryTreeWithParentProtocol {
+    
+    var brother: Self? {
+        
+        guard let parent = self.parent else { return .none }
+        
+        if parent.left?.key == self.key {
+            return parent.right
+        } else {
+            return parent.left
+        }
+        
+    }
+    
+    var uncle: Self? {
+        return parent?.brother
+    }
+    
+}
