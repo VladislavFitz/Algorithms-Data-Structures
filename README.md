@@ -8,7 +8,7 @@ Currently implemented:
 - Insertion sort
 - Shell sort
 - Quick sort
-– Binary tree sort
+- Binary tree sort
 ## Data structures:
 - Binary tree
 - AVL tree
