@@ -23,7 +23,7 @@ class TreeTests: XCTestCase {
         }
         
         XCTAssertLessThan(Double(tree.height), 1.45 * log2(Double(tree.count + 2)))
-        XCTAssertTrue(tree.checkCorrectness())
+        XCTAssertTrue(BinaryTreeVerifier.isCorrect(tree))
         
     }
     

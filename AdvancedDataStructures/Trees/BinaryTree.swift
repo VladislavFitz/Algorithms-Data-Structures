@@ -13,13 +13,13 @@ final class BinaryTree<Key: Comparable, Value>: BinaryTreeWithParentProtocol {
     var key: Key
     var value: Value
     
-    var left: BinaryTree? {
+    private(set) var left: BinaryTree? {
         didSet {
             left?.parent = self
         }
     }
     
-    var right: BinaryTree? {
+    private(set) var right: BinaryTree? {
         didSet {
             right?.parent = self
         }
@@ -167,17 +167,5 @@ extension BinaryTree: CustomStringConvertible {
         })
         
     }
-    
-    func draw() {
-        left?.draw(indent: "", "    ", " |  ")
-        print("\(key)")
-        right?.draw(indent: "", " |  ", "    ")
-    }
-    
-    func draw(indent: String, _ leftIndent: String, _ rightIndent: String) {
-        left?.draw(indent: leftIndent, leftIndent + "    ", leftIndent + " |  ")
-        print(indent + " +- " + "\(key)")
-        right?.draw(indent: rightIndent, rightIndent + " |  ", rightIndent + "    ")
-    }
-    
+        
 }

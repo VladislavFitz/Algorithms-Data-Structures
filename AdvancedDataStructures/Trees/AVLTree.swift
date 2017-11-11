@@ -33,9 +33,6 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
         }
     }
     
-    /** Left subtree of tree
-    */
-    
     var left: AVLTree<Key, Value>? {
         if case .node(key: _, value: _, left: let left, right: _) = self {
             if case .empty = left {
@@ -47,9 +44,6 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
             return nil
         }
     }
-    
-    /** Right subtree of tree
-    */
     
     var right: AVLTree<Key, Value>? {
         if case .node(key: _, value: _, left: _, right: let right) = self {
@@ -63,10 +57,14 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
         }
     }
     
+    var isBalanced: Bool {
+        return [-1, 0, 1].contains(balanceFactor)
+    }
+    
     /** Balance factor of AVL tree. Balance factor ∈ {–1,0,+1} for balanced AVL tree.
      */
     
-    var balanceFactor: Int {
+    fileprivate var balanceFactor: Int {
         return (right?.height ?? 0) - (left?.height ?? 0)
     }
     

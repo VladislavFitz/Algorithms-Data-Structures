@@ -24,8 +24,6 @@ protocol BinaryTreeProtocol {
     var height: Int { get }
     var count: Int { get }
     
-    /** Returns true if tree is leaf (tree without subtrees)
-     */
     var isLeaf: Bool { get }
     
     subscript(key: Key) -> Value? { get }
@@ -37,13 +35,9 @@ protocol BinaryTreeProtocol {
     
     func set(_ value: Value, for key: Key) -> Self
     func removeValue(for key: Key) -> Self?
-
-    func checkCorrectness() -> Bool
-    
     
     func findMin() -> Self
     func findMax() -> Self
-    
     
 }
 
@@ -67,11 +61,8 @@ extension BinaryTreeProtocol {
         return max((left?.height ?? 0), (right?.height ?? 0)) + 1
     }
     
-    subscript(key: Key) -> Value? {
-        get {
-            return value(forKey: key)
-        }
-    }
+    /** Returns tree if tree contains node with specified key
+     */
     
     func contains(key: Key) -> Bool {
         
@@ -98,26 +89,10 @@ extension BinaryTreeProtocol {
         
     }
     
-    func rotated(by direction: RotationDirection) -> Self {
-        
-        switch direction {
-            
-        case .left:
-            
-            guard let rightBranch = self.right else { return self }
-            
-            let leftBranch: Self = .with(key: key, value: value, left: left, right: rightBranch.left)
-            return .with(key: rightBranch.key, value: rightBranch.value, left: leftBranch, right: rightBranch.right)
-            
-        case .right:
-            
-            guard let leftBranch = self.left else { return self }
-
-            let rightBranch: Self = .with(key: key, value: value, left: leftBranch.right, right: right)
-            return .with(key: leftBranch.key, value: leftBranch.value,  left: leftBranch.left, right: rightBranch)
-            
+    subscript(key: Key) -> Value? {
+        get {
+            return value(forKey: key)
         }
-        
     }
     
     func findMin() -> Self {
@@ -144,6 +119,10 @@ extension BinaryTreeProtocol {
         
     }
     
+    /** Returns tree node corresponding to key.
+        If key is not found returns nil.
+    */
+    
     func findNode(for key: Key) -> Self? {
 
         if key == self.key {
@@ -156,21 +135,37 @@ extension BinaryTreeProtocol {
 
     }
     
+    /** Returns true if tree has no subtree
+     */
+    
     var isLeaf: Bool {
         return left == nil && right == nil
     }
+        
+}
+
+extension BinaryTreeProtocol {
     
-    func checkCorrectness() -> Bool {
+    func rotated(by direction: RotationDirection) -> Self {
         
-        if let leftKey = left?.key, leftKey >= key {
-            return false
+        switch direction {
+            
+        case .left:
+            
+            guard let rightBranch = self.right else { return self }
+            
+            let leftBranch: Self = .with(key: key, value: value, left: left, right: rightBranch.left)
+            return .with(key: rightBranch.key, value: rightBranch.value, left: leftBranch, right: rightBranch.right)
+            
+        case .right:
+            
+            guard let leftBranch = self.left else { return self }
+            
+            let rightBranch: Self = .with(key: key, value: value, left: leftBranch.right, right: right)
+            return .with(key: leftBranch.key, value: leftBranch.value,  left: leftBranch.left, right: rightBranch)
+            
         }
         
-        if let rightKey = right?.key, rightKey < key {
-            return false
-        }
-        
-        return (left?.checkCorrectness() ?? true) && (right?.checkCorrectness() ?? true)
     }
     
 }

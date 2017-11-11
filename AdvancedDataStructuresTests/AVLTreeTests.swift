@@ -11,20 +11,6 @@ import XCTest
 
 class AVLTreeTests: XCTestCase {
     
-    func testCorrectness() {
-        
-//        let tree = generateTree()
-        
-//        var elements: [Int] = []
-//        var inOrderTraversal = InOrderTreeTraversal<Int, Void>()
-//        inOrderTraversal.visit = { elements.append($0.key) }
-//
-//        inOrderTraversal.traverse(tree)
-//
-//        XCTAssertTrue(elements.isSorted)
-        
-    }
-    
     func testInsertion() {
         
         let array = Array(0..<1000).shuffled()
@@ -32,7 +18,7 @@ class AVLTreeTests: XCTestCase {
         
         array.forEach { key in
             tree = tree.set((), for: key)
-            XCTAssertTrue([-1, 0, 1].contains(tree.balanceFactor))
+            XCTAssertTrue(tree.isBalanced)
         }
         
         for element in array where !tree.contains(key: element)  {
@@ -60,7 +46,7 @@ class AVLTreeTests: XCTestCase {
             
             tree = updatedTree
             XCTAssertFalse(tree.contains(key: element), "Tree contains: \(element)")
-            XCTAssertTrue([-1, 0, 1].contains(tree.balanceFactor))
+            XCTAssertTrue(tree.isBalanced)
             break
         }
         

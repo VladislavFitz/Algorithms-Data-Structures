@@ -25,6 +25,8 @@
 		516251341FB5053B007B7903 /* AVLTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516251331FB5053B007B7903 /* AVLTreeTests.swift */; };
 		516475E51FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */; };
 		516475E61FB7333E006D76BA /* BinaryTreeWithParentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */; };
+		516475E81FB78DCA006D76BA /* BinaryTreeVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */; };
+		516475E91FB79010006D76BA /* BinaryTreeVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */; };
 		51AD9EC41FB11E11008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		51AD9EC71FB26EEA008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
@@ -86,6 +88,7 @@
 		5113A2581FAF6CF90081B583 /* BinaryTreeSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeSortTests.swift; sourceTree = "<group>"; };
 		516251331FB5053B007B7903 /* AVLTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLTreeTests.swift; sourceTree = "<group>"; };
 		516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeWithParentProtocol.swift; sourceTree = "<group>"; };
+		516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeVerifier.swift; sourceTree = "<group>"; };
 		51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeProtocol.swift; sourceTree = "<group>"; };
 		F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdvancedDataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E9ADE1D56A677003FF5E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -196,13 +199,14 @@
 		F7510E8F1DADA754003EC1E4 /* Trees */ = {
 			isa = PBXGroup;
 			children = (
+				516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */,
 				5113A2471FAF4E370081B583 /* Traversal */,
+				F7510E921DADA754003EC1E4 /* RotationDirection.swift */,
 				51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */,
 				516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */,
 				F792A41C1F9EA57F00E1FFD0 /* BinaryTree.swift */,
 				F7510E901DADA754003EC1E4 /* AVLTree.swift */,
 				F787286F1E664341006FAEEF /* RedBlackTree.swift */,
-				F7510E921DADA754003EC1E4 /* RotationDirection.swift */,
 			);
 			path = Trees;
 			sourceTree = "<group>";
@@ -350,6 +354,7 @@
 				F7510E9A1DADA754003EC1E4 /* RotationDirection.swift in Sources */,
 				F75B25571DCA994700F0B6FC /* Graph.swift in Sources */,
 				F78698381FABCBC0000BA3B4 /* SortAlgorithm.swift in Sources */,
+				516475E81FB78DCA006D76BA /* BinaryTreeVerifier.swift in Sources */,
 				F7510E961DADA754003EC1E4 /* AVLTree.swift in Sources */,
 				F7A7868C1FA27C4D00106C89 /* BubbleSort.swift in Sources */,
 			);
@@ -366,6 +371,7 @@
 				F7A81B801D9F23C6003A7B51 /* main.swift in Sources */,
 				5113A2531FAF4EE80081B583 /* PreOrderTreeTraversal.swift in Sources */,
 				5113A2421FAE6B7E0081B583 /* BinaryTree.swift in Sources */,
+				516475E91FB79010006D76BA /* BinaryTreeVerifier.swift in Sources */,
 				F786983E1FABCC36000BA3B4 /* BubbleSortTest.swift in Sources */,
 				F78698451FABCED9000BA3B4 /* InsertionSort.swift in Sources */,
 				F786984E1FABD0C8000BA3B4 /* ShellSort.swift in Sources */,
