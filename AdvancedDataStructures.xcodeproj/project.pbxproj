@@ -30,8 +30,6 @@
 		51AD9EC41FB11E11008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		51AD9EC71FB26EEA008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
-		F7510E941DADA754003EC1E4 /* NodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7510E8E1DADA754003EC1E4 /* NodeContent.swift */; };
-		F7510E951DADA754003EC1E4 /* NodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7510E8E1DADA754003EC1E4 /* NodeContent.swift */; };
 		F7510E961DADA754003EC1E4 /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7510E901DADA754003EC1E4 /* AVLTree.swift */; };
 		F7510E971DADA754003EC1E4 /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7510E901DADA754003EC1E4 /* AVLTree.swift */; };
 		F7510E9A1DADA754003EC1E4 /* RotationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7510E921DADA754003EC1E4 /* RotationDirection.swift */; };
@@ -92,10 +90,9 @@
 		51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeProtocol.swift; sourceTree = "<group>"; };
 		F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdvancedDataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E9ADE1D56A677003FF5E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		F7510E8E1DADA754003EC1E4 /* NodeContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeContent.swift; sourceTree = "<group>"; };
 		F7510E901DADA754003EC1E4 /* AVLTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
 		F7510E921DADA754003EC1E4 /* RotationDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationDirection.swift; sourceTree = "<group>"; };
-		F75AA8321D6E579E009E63C2 /* TreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TreeTests.swift; path = ../AdvancedDataStructures/TreeTests.swift; sourceTree = "<group>"; };
+		F75AA8321D6E579E009E63C2 /* TreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeTests.swift; sourceTree = "<group>"; };
 		F75B25561DCA994700F0B6FC /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		F78698371FABCBC0000BA3B4 /* SortAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortAlgorithm.swift; sourceTree = "<group>"; };
 		F78698391FABCBCB000BA3B4 /* InsertionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertionSort.swift; sourceTree = "<group>"; };
@@ -138,7 +135,6 @@
 		5113A2431FAF4A5D0081B583 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				5113A2441FAF4A6D0081B583 /* BinaryTreePrinter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -152,6 +148,29 @@
 				5113A2501FAF4EC20081B583 /* PostOrderTreeTraversal.swift */,
 			);
 			path = Traversal;
+			sourceTree = "<group>";
+		};
+		516475EA1FB796EE006D76BA /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				F786983D1FABCC36000BA3B4 /* BubbleSortTest.swift */,
+				F786983F1FABCC3F000BA3B4 /* InsertionSortTest.swift */,
+				F78698411FABCC46000BA3B4 /* QuickSortTest.swift */,
+				F786984A1FABD055000BA3B4 /* ShellSortTest.swift */,
+				F78698511FABD81E000BA3B4 /* CombSortTest.swift */,
+				5113A2581FAF6CF90081B583 /* BinaryTreeSortTests.swift */,
+			);
+			path = Sort;
+			sourceTree = "<group>";
+		};
+		516475EB1FB796F4006D76BA /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				F75AA8321D6E579E009E63C2 /* TreeTests.swift */,
+				5113A2401FAE699F0081B583 /* BinaryTreeTests.swift */,
+				516251331FB5053B007B7903 /* AVLTreeTests.swift */,
+			);
+			path = Tree;
 			sourceTree = "<group>";
 		};
 		F72E9AD21D56A677003FF5E7 = {
@@ -175,11 +194,10 @@
 		F72E9ADD1D56A677003FF5E7 /* AdvancedDataStructures */ = {
 			isa = PBXGroup;
 			children = (
-				5113A2431FAF4A5D0081B583 /* Utils */,
 				F7A7868A1FA27C3E00106C89 /* Sort */,
 				F72E9ADE1D56A677003FF5E7 /* main.swift */,
-				F7510E8D1DADA754003EC1E4 /* Common */,
 				F7510E8F1DADA754003EC1E4 /* Trees */,
+				5113A2431FAF4A5D0081B583 /* Utils */,
 				F7A81B6B1D99E391003A7B51 /* Generator.swift */,
 				F7ED1A6F1DAAE836006F17CE /* DSU.swift */,
 				F75B25561DCA994700F0B6FC /* Graph.swift */,
@@ -188,17 +206,10 @@
 			path = AdvancedDataStructures;
 			sourceTree = "<group>";
 		};
-		F7510E8D1DADA754003EC1E4 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				F7510E8E1DADA754003EC1E4 /* NodeContent.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		F7510E8F1DADA754003EC1E4 /* Trees */ = {
 			isa = PBXGroup;
 			children = (
+				5113A2441FAF4A6D0081B583 /* BinaryTreePrinter.swift */,
 				516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */,
 				5113A2471FAF4E370081B583 /* Traversal */,
 				F7510E921DADA754003EC1E4 /* RotationDirection.swift */,
@@ -228,15 +239,8 @@
 		F7A81B751D99E7F8003A7B51 /* AdvancedDataStructuresTests */ = {
 			isa = PBXGroup;
 			children = (
-				F75AA8321D6E579E009E63C2 /* TreeTests.swift */,
-				F786983D1FABCC36000BA3B4 /* BubbleSortTest.swift */,
-				F786983F1FABCC3F000BA3B4 /* InsertionSortTest.swift */,
-				F78698411FABCC46000BA3B4 /* QuickSortTest.swift */,
-				F786984A1FABD055000BA3B4 /* ShellSortTest.swift */,
-				F78698511FABD81E000BA3B4 /* CombSortTest.swift */,
-				5113A2581FAF6CF90081B583 /* BinaryTreeSortTests.swift */,
-				5113A2401FAE699F0081B583 /* BinaryTreeTests.swift */,
-				516251331FB5053B007B7903 /* AVLTreeTests.swift */,
+				516475EB1FB796F4006D76BA /* Tree */,
+				516475EA1FB796EE006D76BA /* Sort */,
 				F7A81B781D99E7F8003A7B51 /* Info.plist */,
 			);
 			path = AdvancedDataStructuresTests;
@@ -345,7 +349,6 @@
 				F78728701E664341006FAEEF /* RedBlackTree.swift in Sources */,
 				5113A24F1FAF4EBB0081B583 /* InOrderTreeTraversal.swift in Sources */,
 				F7A81B6C1D99E391003A7B51 /* Generator.swift in Sources */,
-				F7510E941DADA754003EC1E4 /* NodeContent.swift in Sources */,
 				F786984D1FABD06A000BA3B4 /* ShellSort.swift in Sources */,
 				5113A2511FAF4EC20081B583 /* PostOrderTreeTraversal.swift in Sources */,
 				F792A41D1F9EA57F00E1FFD0 /* BinaryTree.swift in Sources */,
@@ -375,7 +378,6 @@
 				F786983E1FABCC36000BA3B4 /* BubbleSortTest.swift in Sources */,
 				F78698451FABCED9000BA3B4 /* InsertionSort.swift in Sources */,
 				F786984E1FABD0C8000BA3B4 /* ShellSort.swift in Sources */,
-				F7510E951DADA754003EC1E4 /* NodeContent.swift in Sources */,
 				F7A81B7C1D99E84A003A7B51 /* TreeTests.swift in Sources */,
 				5113A2541FAF4EE80081B583 /* InOrderTreeTraversal.swift in Sources */,
 				F78698521FABD81E000BA3B4 /* CombSortTest.swift in Sources */,
