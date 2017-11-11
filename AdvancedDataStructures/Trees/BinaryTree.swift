@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BinaryTree<Key: Comparable, Value>: IBinaryTreeProtocol {
+final class BinaryTree<Key: Comparable, Value>: BinaryTreeWithParentProtocol {
 
     var key: Key
     var value: Value
@@ -27,7 +27,14 @@ final class BinaryTree<Key: Comparable, Value>: IBinaryTreeProtocol {
     
     weak var parent: BinaryTree?
     
-    init(key: Key, value: Value, left: BinaryTree? = .none, right: BinaryTree? = .none, parent: BinaryTree? = .none) {
+    init(key: Key, value: Value, left: BinaryTree<Key, Value>?, right: BinaryTree<Key, Value>?) {
+        self.key = key
+        self.value = value
+        self.left = left
+        self.right = right
+    }
+    
+    init(key: Key, value: Value, left: BinaryTree? = .none, right: BinaryTree? = .none, parent: BinaryTree?) {
         self.key = key
         self.value = value
         self.left = left
@@ -35,7 +42,7 @@ final class BinaryTree<Key: Comparable, Value>: IBinaryTreeProtocol {
         self.parent = parent
     }
     
-    func set(_ value: Value, for key: Key) {
+    func set(_ value: Value, for key: Key) -> BinaryTree {
         
         if key == self.key {
             
@@ -44,7 +51,7 @@ final class BinaryTree<Key: Comparable, Value>: IBinaryTreeProtocol {
         } else if key < self.key {
             
             if let leftBranch = self.left {
-                leftBranch.set(value, for: key)
+                _ = leftBranch.set(value, for: key)
             } else {
                 self.left = BinaryTree(key: key, value: value, parent: self)
             }
@@ -52,12 +59,14 @@ final class BinaryTree<Key: Comparable, Value>: IBinaryTreeProtocol {
         } else {
             
             if let rightBranch = self.right {
-                rightBranch.set(value, for: key)
+                _ = rightBranch.set(value, for: key)
             } else {
                 self.right = BinaryTree(key: key, value: value, parent: self)
             }
             
         }
+        
+        return self
         
     }
     
@@ -136,8 +145,8 @@ extension BinaryTree {
     
     convenience init?(array: [(key: Key, value: Value)]) {
         guard let firstElement = array.first else { return nil }
-        self.init(key: firstElement.key, value: firstElement.value)
-        array.dropFirst().forEach { set($0.value, for: $0.key) }
+        self.init(key: firstElement.key, value: firstElement.value, parent: .none)
+        array.dropFirst().forEach { _ = set($0.value, for: $0.key) }
     }
     
     static func with<K: Comparable>(array: [K]) -> BinaryTree<K, Void>? {

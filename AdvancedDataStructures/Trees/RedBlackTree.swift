@@ -14,21 +14,12 @@ enum Color {
 
 final class RedBlackTree<Key: Comparable, Value>: BinaryTreeProtocol {
     
-    var key: Key?
-    var value: Value?
+    var key: Key
+    var value: Value
     var color: Color
     weak var parent: RedBlackTree?
     var left: RedBlackTree?
     var right: RedBlackTree?
-    
-    init() {
-        self.key = nil
-        self.value = nil
-        self.left = nil
-        self.right = nil
-        self.parent = nil
-        self.color = .black
-    }
     
     init(key: Key, value: Value, left: RedBlackTree?, right: RedBlackTree?) {
         self.key = key
@@ -114,9 +105,9 @@ extension RedBlackTree {
         return parent?.brother
     }
     
-    func insert(value: Value, forKey key: Key) -> RedBlackTree {
+    func set(_ value: Value, for key: Key) -> RedBlackTree {
         
-        guard let currentKey = self.key else { return self }
+        let currentKey = self.key
         
         let result: RedBlackTree
         var shouldCheckBalance: Bool = false
@@ -126,7 +117,7 @@ extension RedBlackTree {
             let updatedRight: RedBlackTree
             
             if let right = self.right {
-                updatedRight = right.insert(value: value, forKey: key)
+                updatedRight = right.set(value, for: key)
             } else {
                 updatedRight = RedBlackTree(key: key, value: value, left: .none, right: .none, color: .red, parent: self)
                 shouldCheckBalance = true
@@ -139,7 +130,7 @@ extension RedBlackTree {
             let updatedLeft: RedBlackTree
             
             if let left = self.left {
-                updatedLeft = left.insert(value: value, forKey: key)
+                updatedLeft = left.set(value, for: key)
             } else {
                 updatedLeft = RedBlackTree(key: key, value: value, left: .none, right: .none, color: .red, parent: self)
                 shouldCheckBalance = true
@@ -199,7 +190,7 @@ extension RedBlackTree {
         return self
     }
     
-    func removeValueFor(key: Key) -> RedBlackTree {
+    func removeValue(for key: Key) -> Self? {
         return self
     }
     

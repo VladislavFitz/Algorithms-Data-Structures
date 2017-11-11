@@ -19,7 +19,7 @@ class TreeTests: XCTestCase {
         
         for _ in 0..<1000 {
             let value = g.getNewValue()
-            tree = tree.insert(value: value, forKey: value)
+            tree = tree.set(value, for: value)
         }
         
         XCTAssertLessThan(Double(tree.height), 1.45 * log2(Double(tree.count + 2)))
@@ -33,10 +33,8 @@ class TreeTests: XCTestCase {
         var tree = AVLTree<Int, Void>.empty
         
         for key in keys {
-            tree = tree.insert(value: (), forKey: key)
+            tree = tree.set((), for: key)
         }
-        
-        print(tree)
         
         XCTAssertTrue(true)
         

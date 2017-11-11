@@ -2,8 +2,8 @@
 //  BinaryTreeProtocol.swift
 //  AdvancedDataStructures
 //
-//  Created by Vladislav Fitc on 01.10.16.
-//  Copyright © 2016 Fitc. All rights reserved.
+//  Created by Vladislav on 06/11/2017.
+//  Copyright © 2017 Fitc. All rights reserved.
 //
 
 import Foundation
@@ -13,12 +13,11 @@ protocol BinaryTreeProtocol {
     associatedtype Key: Comparable
     associatedtype Value
     
-    init()
     init(key: Key, value: Value, left: Self?, right: Self?)
     
-    var key: Key? { get }
-    var value: Value? { get }
-
+    var key: Key { get }
+    var value: Value { get }
+    
     var left: Self? { get }
     var right: Self? { get }
     
@@ -31,23 +30,24 @@ protocol BinaryTreeProtocol {
     
     subscript(key: Key) -> Value? { get }
     
+    func contains(key: Key) -> Bool
+    
     func value(forKey key: Key) -> Value?
-    func insert(value: Value, forKey key: Key) -> Self
-    func removeValueFor(key: Key) -> Self
     func rotated(by direction: RotationDirection) -> Self
     
+    func set(_ value: Value, for key: Key) -> Self
+    func removeValue(for key: Key) -> Self?
+
     func checkCorrectness() -> Bool
+    
     
     func findMin() -> Self
     func findMax() -> Self
-
+    
+    
 }
 
 extension BinaryTreeProtocol {
-    
-    static var none: Self {
-        return Self()
-    }
     
     static func with(key: Key, value: Value, left: Self?, right: Self?) -> Self {
         return Self(key: key, value: value, left: left, right: right)
@@ -73,35 +73,55 @@ extension BinaryTreeProtocol {
         }
     }
     
+    func contains(key: Key) -> Bool {
+        
+        let currentKey = self.key
+        
+        if currentKey == key {
+            return true
+        } else {
+            let branch = key < currentKey ? left : right
+            return branch?.contains(key: key) ?? false
+        }
+        
+    }
+    
     func value(forKey key: Key) -> Value? {
         
-        guard let currentKey = self.key else { return .none }
-        
-        if key == currentKey {
+        if key == self.key {
             return self.value
-        } else if key < currentKey {
+        } else if key < self.key {
             return left?.value(forKey: key)
         } else {
             return right?.value(forKey: key)
         }
-
+        
     }
     
     func rotated(by direction: RotationDirection) -> Self {
         
         switch direction {
+            
         case .left:
-            let lb: Self = .with(key: key!, value: value!, left: left, right: right?.left)
-            return .with(key: right!.key!, value: right!.value!, left: lb, right: right?.right)
+            
+            guard let rightBranch = self.right else { return self }
+            
+            let leftBranch: Self = .with(key: key, value: value, left: left, right: rightBranch.left)
+            return .with(key: rightBranch.key, value: rightBranch.value, left: leftBranch, right: rightBranch.right)
             
         case .right:
-            let rb: Self = .with(key: key!, value: value!, left: left?.right, right: right)
-            return .with(key: left!.key!, value: left!.value!,  left: left?.left, right: rb)
-        }
+            
+            guard let leftBranch = self.left else { return self }
 
+            let rightBranch: Self = .with(key: key, value: value, left: leftBranch.right, right: right)
+            return .with(key: leftBranch.key, value: leftBranch.value,  left: leftBranch.left, right: rightBranch)
+            
+        }
+        
     }
     
     func findMin() -> Self {
+        
         var minNode = self
         
         while let leftBranch = minNode.left {
@@ -109,9 +129,11 @@ extension BinaryTreeProtocol {
         }
         
         return minNode
+        
     }
     
     func findMax() -> Self {
+        
         var maxNode = self
         
         while let rightBranch = maxNode.right {
@@ -119,28 +141,20 @@ extension BinaryTreeProtocol {
         }
         
         return maxNode
+        
     }
     
-//    func findNode(for key: Key) -> Self? {
-//
-//        var currentNode = self
-//
-//        if key == currentNode.key {
-//            return self
-//        } else if key > currentNode.key {
-//            if let rightBranch = currentNode.right {
-//                currentNode = rightBranch
-//            } else {
-//                return .none
-//            }
-//        } else {
-//            if let leftBranch = currentNode.left {
-//
-//            }
-//            return self.left?.findNode(for: key)
-//        }
-//
-//    }
+    func findNode(for key: Key) -> Self? {
+
+        if key == self.key {
+            return self
+        } else if key > self.key {
+            return self.right?.findNode(for: key)
+        } else {
+            return self.left?.findNode(for: key)
+        }
+
+    }
     
     var isLeaf: Bool {
         return left == nil && right == nil
@@ -148,15 +162,11 @@ extension BinaryTreeProtocol {
     
     func checkCorrectness() -> Bool {
         
-        guard let key = self.key else {
-            return true
-        }
-        
-        if let leftKey = self.left?.key, leftKey >= key {
+        if let leftKey = left?.key, leftKey >= key {
             return false
         }
         
-        if let rightKey = self.right?.key, rightKey < key {
+        if let rightKey = right?.key, rightKey < key {
             return false
         }
         

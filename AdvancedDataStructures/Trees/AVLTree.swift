@@ -13,36 +13,36 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
     case empty
     indirect case node(key: Key, value: Value, left: AVLTree, right: AVLTree)
     
-    init() {
-        self = .empty
-    }
-    
     init(key: Key, value: Value, left: AVLTree?, right: AVLTree?) {
         self = .node(key: key, value: value, left: left ?? .empty, right: right ?? .empty)
     }
     
-    var key: Key? {
+    var key: Key {
         if case .node(key: let key, value: _, left: _, right: _) = self {
             return key
         } else {
-            return nil
+            fatalError()
         }
     }
         
-    var value: Value? {
+    var value: Value {
         if case .node(key: _, value: let value, left: _, right: _) = self {
             return value
         } else {
-            return nil
+            fatalError()
         }
     }
     
     /** Left subtree of tree
     */
     
-    var left: AVLTree? {
+    var left: AVLTree<Key, Value>? {
         if case .node(key: _, value: _, left: let left, right: _) = self {
-            return left
+            if case .empty = left {
+                return nil
+            } else {
+                return left
+            }
         } else {
             return nil
         }
@@ -51,9 +51,13 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
     /** Right subtree of tree
     */
     
-    var right: AVLTree? {
+    var right: AVLTree<Key, Value>? {
         if case .node(key: _, value: _, left: _, right: let right) = self {
-            return right
+            if case .empty = right {
+                return nil
+            } else {
+                return right
+            }
         } else {
             return nil
         }
@@ -110,7 +114,7 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
 
 extension AVLTree {
     
-    func insert(value: Value, forKey key: Key) -> AVLTree {
+    func set(_ value: Value, for key: Key) -> AVLTree<Key, Value> {
         
         switch self {
         case .empty:
@@ -120,12 +124,12 @@ extension AVLTree {
             
             if currentKey < key {
                 
-                let newright = right.insert(value: value, forKey: key)
+                let newright = right.set(value, for: key)
                 return AVLTree.node(key: currentKey, value: currentValue, left: left, right: newright).balanced()
                 
             } else if currentKey > key {
                 
-                let newleft = left.insert(value: value, forKey: key)
+                let newleft = left.set(value, for: key)
                 return AVLTree.node(key: currentKey, value: currentValue, left: newleft, right: right).balanced()
                 
             } else {
@@ -133,11 +137,10 @@ extension AVLTree {
             }
             
         }
-        
     }
         
-    func removeValueFor(key: Key) -> AVLTree {
-        
+    func removeValue(for key: Key) -> AVLTree<Key, Value>? {
+
         func removeMin(tree: AVLTree) -> AVLTree {
             
             switch tree {
@@ -145,8 +148,8 @@ extension AVLTree {
             case .empty:
                 return self
                 
-            case .node(key: _, value: _, left: .empty, right: let right):
-                return right
+            case .node(key: _, value: _, left: .empty, right: .node):
+                return right!
                 
             case .node(key: let key, value: let value, left: let left, right: let right):
                 return AVLTree.node(key: key, value: value, left: removeMin(tree: left), right: right).balanced()
@@ -160,17 +163,17 @@ extension AVLTree {
             return self
             
         case .node(key: let currentKey, value: let value, left: let left, right: let right) where key < currentKey:
-            return AVLTree.node(key: currentKey, value: value, left: left.removeValueFor(key: key), right: right)
+            return AVLTree.node(key: currentKey, value: value, left: left.removeValue(for: key)!, right: right)
             
         case .node(key: let currentKey, value: let value, left: let left, right: let right) where key > currentKey:
-            return AVLTree.node(key: currentKey, value: value, left: left, right: right.removeValueFor(key: key))
+            return AVLTree.node(key: currentKey, value: value, left: left, right: right.removeValue(for: key)!)
             
         case .node(key: _, value: _, left: let left, right: .empty):
             return left
             
         case .node(key: _, value: _, left: let left, right: let right):
-            let min = right.findMin()
-            return AVLTree.node(key: min.key!, value: min.value!, left: left, right: removeMin(tree: right)).balanced()
+            let rightMinElement = right.findMin()
+            return AVLTree.node(key: rightMinElement.key, value: rightMinElement.value, left: left, right: removeMin(tree: right)).balanced()
         }
         
     }
@@ -184,7 +187,7 @@ extension AVLTree: CustomStringConvertible {
     var description: String {
         
         return BinaryTreePrinter.treeString(self, using: { (tree) in
-            return (tree.key.flatMap({ "\($0)" }) ?? "nil", tree.left, tree.right)
+            return ("\(tree.key)", tree.left, tree.right)
         })
         
     }
