@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AdvancedDataStructures
+@testable import AdvancedDataStructures
 import XCTest
 
 class BubbleSortTests: XCTestCase {

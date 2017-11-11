@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import AdvancedDataStructures
+@testable import AdvancedDataStructures
 
 class BinaryTreeTests: XCTestCase {
     

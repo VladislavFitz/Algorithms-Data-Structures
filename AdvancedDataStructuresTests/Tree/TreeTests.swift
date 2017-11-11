@@ -6,20 +6,18 @@
 //  Copyright © 2016 Fitc. All rights reserved.
 //
 
+import Foundation
 import XCTest
-import AdvancedDataStructures
+@testable import AdvancedDataStructures
 
 class TreeTests: XCTestCase {
     
     func testInsertComplexity() {
+                
+        var tree = AVLTree<Int, Void>.empty
         
-        var g = Generator(bound: 1000)
-        
-        var tree = AVLTree<Int, Int>.empty
-        
-        for _ in 0..<1000 {
-            let value = g.getNewValue()
-            tree = tree.set(value, for: value)
+        for element in Array(0..<1000).shuffled() {
+            tree = tree.set((), for: element)
         }
         
         XCTAssertLessThan(Double(tree.height), 1.45 * log2(Double(tree.count + 2)))
