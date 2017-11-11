@@ -132,13 +132,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5113A2431FAF4A5D0081B583 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		5113A2471FAF4E370081B583 /* Traversal */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +166,49 @@
 			path = Tree;
 			sourceTree = "<group>";
 		};
+		516475EC1FB797E2006D76BA /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				F75B25561DCA994700F0B6FC /* Graph.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		516475ED1FB797EC006D76BA /* Data structures */ = {
+			isa = PBXGroup;
+			children = (
+				F7510E8F1DADA754003EC1E4 /* Trees */,
+				516475EE1FB797FB006D76BA /* DSU */,
+				516475EC1FB797E2006D76BA /* Graph */,
+			);
+			path = "Data structures";
+			sourceTree = "<group>";
+		};
+		516475EE1FB797FB006D76BA /* DSU */ = {
+			isa = PBXGroup;
+			children = (
+				F7ED1A6F1DAAE836006F17CE /* DSU.swift */,
+			);
+			path = DSU;
+			sourceTree = "<group>";
+		};
+		516475EF1FB79804006D76BA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F7A81B6B1D99E391003A7B51 /* Generator.swift */,
+				F78698471FABCF71000BA3B4 /* Array+Convenience.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		516475F01FB79820006D76BA /* Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				F7A7868A1FA27C3E00106C89 /* Sort */,
+			);
+			path = Algorithms;
+			sourceTree = "<group>";
+		};
 		F72E9AD21D56A677003FF5E7 = {
 			isa = PBXGroup;
 			children = (
@@ -194,14 +230,10 @@
 		F72E9ADD1D56A677003FF5E7 /* AdvancedDataStructures */ = {
 			isa = PBXGroup;
 			children = (
-				F7A7868A1FA27C3E00106C89 /* Sort */,
+				516475F01FB79820006D76BA /* Algorithms */,
+				516475ED1FB797EC006D76BA /* Data structures */,
+				516475EF1FB79804006D76BA /* Utils */,
 				F72E9ADE1D56A677003FF5E7 /* main.swift */,
-				F7510E8F1DADA754003EC1E4 /* Trees */,
-				5113A2431FAF4A5D0081B583 /* Utils */,
-				F7A81B6B1D99E391003A7B51 /* Generator.swift */,
-				F7ED1A6F1DAAE836006F17CE /* DSU.swift */,
-				F75B25561DCA994700F0B6FC /* Graph.swift */,
-				F78698471FABCF71000BA3B4 /* Array+Convenience.swift */,
 			);
 			path = AdvancedDataStructures;
 			sourceTree = "<group>";
