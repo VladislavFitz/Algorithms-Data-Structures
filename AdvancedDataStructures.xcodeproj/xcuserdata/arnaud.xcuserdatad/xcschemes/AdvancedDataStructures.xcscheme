@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F7A81B731D99E7F8003A7B51"
+               BuildableName = "AdvancedDataStructuresTests.xctest"
+               BlueprintName = "AdvancedDataStructuresTests"
+               ReferencedContainer = "container:AdvancedDataStructures.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
