@@ -19,11 +19,11 @@ class AVLTreeTests: XCTestCase {
         
         array.forEach { key in
             tree = tree.set((), for: key)
-            XCTAssertTrue(tree.isBalanced)
+            XCTAssertTrue(tree.isBalanced, "Not balanced: \n \(tree)")
         }
         
         for element in array where !tree.contains(key: element)  {
-            XCTFail("Tree doesn't contain \(element)")
+            XCTFail("Tree doesn't contain \(element) \n \(tree)")
             break
         }
         
@@ -38,7 +38,6 @@ class AVLTreeTests: XCTestCase {
             tree = tree.set((), for: key)
         }
         
-        
         for element in array.shuffled() {
             
             guard let updatedTree = tree.removeValue(for: element) else {
@@ -46,9 +45,10 @@ class AVLTreeTests: XCTestCase {
             }
             
             tree = updatedTree
-            XCTAssertFalse(tree.contains(key: element), "Tree contains: \(element)")
-            XCTAssertTrue(tree.isBalanced)
+            XCTAssertFalse(tree.contains(key: element), "Tree contains: \(element) \n \(tree)")
+            XCTAssertTrue(tree.isBalanced, "Not balanced: \n \(tree)")
             break
+            
         }
         
     }

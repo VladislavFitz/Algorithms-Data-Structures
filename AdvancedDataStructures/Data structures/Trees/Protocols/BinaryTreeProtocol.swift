@@ -21,6 +21,8 @@ protocol BinaryTreeProtocol: CustomStringConvertible {
     var left: Self? { get }
     var right: Self? { get }
     
+    var nodeDescription: String { get }
+    
     func value(forKey key: Key) -> Value?
     func set(_ value: Value, for key: Key) -> Self
     func removeValue(for key: Key) -> Self?

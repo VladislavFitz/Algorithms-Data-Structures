@@ -80,30 +80,59 @@ enum AVLTree<Key, Value>: BinaryTreeProtocol where Key: Comparable {
         case .node(key: let key, value: let value, left: let left, right: let right):
             
             switch balanceFactor {
+            /*
+             If balance factor == 2, that means that tree is misbalanced to right side.
+             One should turn it left.
+            */
             case 2:
+                
+                let intermediateTree: AVLTree
+                
+                /*
+                 If balance factor of right subtree is negative, that means that one need a big left turn
+                 So one need to turn right branch right previously
+                */
+                
                 if right.balanceFactor < 0 {
                     let rotatedright = right.rotated(by: .right)
-                    let intermediateTree = AVLTree.node(key: key, value: value, left: left, right: rotatedright)
-                    return intermediateTree.rotated(by: .left)
+                    intermediateTree = AVLTree.node(key: key, value: value, left: left, right: rotatedright)
                 } else {
-                    return self.rotated(by: .left)
+                    intermediateTree = self
                 }
                 
+                return intermediateTree.rotated(by: .left)
+            /*
+             If balance factor == -2, that means that tree is misbalanced to left side.
+             One should turn it right.
+             */
             case -2:
+                
+                let intermediateTree: AVLTree
+                
+                /*
+                 If balance factor of left subtree is positive, that means that one need a big right turn
+                 So one need to turn left branch left previously
+                 */
+
                 
                 if left.balanceFactor > 0 {
                     let rotatedleft = left.rotated(by: .left)
-                    let intermediateTree = AVLTree.node(key: key, value: value, left: rotatedleft, right: right)
-                    return intermediateTree.rotated(by: .right)
+                    intermediateTree = AVLTree.node(key: key, value: value, left: rotatedleft, right: right)
                 } else {
-                    return self.rotated(by: .right)
+                    intermediateTree = self
                 }
+                
+                return intermediateTree.rotated(by: .right)
                 
             default:
                 return self
             }
         }
         
+    }
+    
+    var nodeDescription: String {
+        return "\(key) [\(balanceFactor)]"
     }
     
 }
@@ -138,19 +167,24 @@ extension AVLTree {
     }
         
     func removeValue(for key: Key) -> AVLTree<Key, Value>? {
+        
+        /**
+         Returns tuple of min element of tree and tree without this min element
+        */
 
-        func removeMin(tree: AVLTree) -> AVLTree {
+        func extractMin(tree: AVLTree) -> (min: (key: Key, value: Value)?, tree: AVLTree) {
             
             switch tree {
                 
             case .empty:
-                return self
+                return (min: .none, tree: self)
                 
-            case .node(key: _, value: _, left: .empty, right: .node):
-                return right!
+            case .node(key: let key, value: let value, left: .empty, right: .node):
+                return (min: (key, value), tree: right!)
                 
             case .node(key: let key, value: let value, left: let left, right: let right):
-                return AVLTree.node(key: key, value: value, left: removeMin(tree: left), right: right).balanced()
+                let (minElement, updatedLeft) = extractMin(tree: left)
+                return (min: minElement, tree: AVLTree.node(key: key, value: value, left: updatedLeft, right: right).balanced())
                 
             }
             
@@ -160,18 +194,40 @@ extension AVLTree {
         case .empty:
             return self
             
-        case .node(key: let currentKey, value: let value, left: let left, right: let right) where key < currentKey:
-            return AVLTree.node(key: currentKey, value: value, left: left.removeValue(for: key)!, right: right)
+        /*
+            If searching key is lower than the key of current node, return tree with updated left branch
+        */
             
-        case .node(key: let currentKey, value: let value, left: let left, right: let right) where key > currentKey:
-            return AVLTree.node(key: currentKey, value: value, left: left, right: right.removeValue(for: key)!)
+        case .node(key: let currentKey, value: let currentValue, left: let left, right: let right) where key < currentKey:
+            let updatedLeft = left.removeValue(for: key) ?? .empty
+            return AVLTree.node(key: currentKey, value: currentValue, left: updatedLeft, right: right).balanced()
+        
+        /*
+         If searching key is greater than the key of current node, return tree with updated right branch
+        */
+
+        case .node(key: let currentKey, value: let currentValue, left: let left, right: let right) where key > currentKey:
+            let updatedRight = right.removeValue(for: key) ?? .empty
+            return AVLTree.node(key: currentKey, value: currentValue, left: left, right: updatedRight).balanced()
             
+        /*
+             If searching key is equal to key of current node:
+        */
+        
+        /*
+             If right branch is empty, just return left branch
+        */
         case .node(key: _, value: _, left: let left, right: .empty):
             return left
             
+        /*
+             Otherwise, extract min node from right branch, and replace current node by it
+        */
+            
         case .node(key: _, value: _, left: let left, right: let right):
-            let rightMinElement = right.findMin()
-            return AVLTree.node(key: rightMinElement.key, value: rightMinElement.value, left: left, right: removeMin(tree: right)).balanced()
+            let (minElement, updatedRight) = extractMin(tree: right)
+            guard let rightMin = minElement else { return left }
+            return AVLTree.node(key: rightMin.key, value: rightMin.value, left: left, right: updatedRight).balanced()
         }
         
     }

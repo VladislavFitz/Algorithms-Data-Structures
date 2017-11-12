@@ -150,7 +150,7 @@ extension BinaryTreeProtocol {
     var description: String {
         
         return BinaryTreePrinter.treeString(self, using: { (tree) in
-            return ("\(nodeDescription)", tree.left, tree.right)
+            return ("\(tree.nodeDescription)", tree.left, tree.right)
         })
         
     }
