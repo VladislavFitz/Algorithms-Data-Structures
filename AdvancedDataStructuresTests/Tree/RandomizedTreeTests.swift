@@ -42,30 +42,27 @@ class RandomizedTreeTests: XCTestCase {
         
     }
     
-    func testInsertion() {
+    func testInsertionAndRemoval() {
         
-        let shuffledArray = Array(0..<1000).shuffled()
+        let array = Array(0..<1000).shuffled()
         
-        var tree = RandomizedTree<Int, Void>(key: shuffledArray.first!, value: (), left: .none, right: .none)
+        var tree = RandomizedTree<Int, Void>(key: array.first!, value: (), left: .none, right: .none)
         
-        for key in shuffledArray.dropFirst() {
+        for key in array.dropFirst() {
             tree = .insert((), for: key, into: tree)
         }
         
-        for key in shuffledArray {
+        for key in array.shuffled() {
             XCTAssertTrue(tree.contains(key: key), "Tree doesn't contain \(key)")
         }
         
-    }
-    
-    func testSearch() {
-        let tree = generateTree(size: 1000)
-
+        for key in array.shuffled() {
+            if let mutatedTree = RandomizedTree.removeValue(for: key, from: tree) {
+                tree = mutatedTree
+                XCTAssertFalse(tree.contains(key: key))
+            }
+        }
         
-    }
-    
-    func testRemoval() {
-        XCTAssertTrue(true)
     }
     
 }
