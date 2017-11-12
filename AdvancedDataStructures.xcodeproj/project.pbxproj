@@ -35,6 +35,7 @@
 		516475F81FB79A3D006D76BA /* ShellSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F786984C1FABD06A000BA3B4 /* ShellSort.swift */; };
 		516475F91FB79A3D006D76BA /* CombSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F786984F1FABD7EE000BA3B4 /* CombSort.swift */; };
 		516475FA1FB79A3D006D76BA /* BinaryTreeSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113A2561FAF59E30081B583 /* BinaryTreeSort.swift */; };
+		516475FE1FB7C8D4006D76BA /* RandomizedTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */; };
 		51AD9EC41FB11E11008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		51AD9EC71FB26EEA008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
@@ -88,6 +89,7 @@
 		516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeWithParentProtocol.swift; sourceTree = "<group>"; };
 		516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeVerifier.swift; sourceTree = "<group>"; };
 		516475F11FB798E1006D76BA /* MutableCollection+Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Shuffle.swift"; sourceTree = "<group>"; };
+		516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizedTree.swift; sourceTree = "<group>"; };
 		51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeProtocol.swift; sourceTree = "<group>"; };
 		F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdvancedDataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E9ADE1D56A677003FF5E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -209,6 +211,24 @@
 			path = Algorithms;
 			sourceTree = "<group>";
 		};
+		516475FB1FB7C8A7006D76BA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5113A2441FAF4A6D0081B583 /* BinaryTreePrinter.swift */,
+				516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		516475FC1FB7C8BE006D76BA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */,
+				516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		F72E9AD21D56A677003FF5E7 = {
 			isa = PBXGroup;
 			children = (
@@ -241,15 +261,14 @@
 		F7510E8F1DADA754003EC1E4 /* Trees */ = {
 			isa = PBXGroup;
 			children = (
+				516475FC1FB7C8BE006D76BA /* Protocols */,
+				516475FB1FB7C8A7006D76BA /* Utils */,
 				5113A2471FAF4E370081B583 /* Traversal */,
-				5113A2441FAF4A6D0081B583 /* BinaryTreePrinter.swift */,
-				516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */,
 				F7510E921DADA754003EC1E4 /* RotationDirection.swift */,
-				51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */,
-				516475E41FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift */,
 				F792A41C1F9EA57F00E1FFD0 /* BinaryTree.swift */,
 				F7510E901DADA754003EC1E4 /* AVLTree.swift */,
 				F787286F1E664341006FAEEF /* RedBlackTree.swift */,
+				516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */,
 			);
 			path = Trees;
 			sourceTree = "<group>";
@@ -378,6 +397,7 @@
 				51AD9EC41FB11E11008D4FE7 /* BinaryTreeProtocol.swift in Sources */,
 				F78698501FABD7EE000BA3B4 /* CombSort.swift in Sources */,
 				F786983A1FABCBCB000BA3B4 /* InsertionSort.swift in Sources */,
+				516475FE1FB7C8D4006D76BA /* RandomizedTree.swift in Sources */,
 				F78728701E664341006FAEEF /* RedBlackTree.swift in Sources */,
 				5113A24F1FAF4EBB0081B583 /* InOrderTreeTraversal.swift in Sources */,
 				F786984D1FABD06A000BA3B4 /* ShellSort.swift in Sources */,

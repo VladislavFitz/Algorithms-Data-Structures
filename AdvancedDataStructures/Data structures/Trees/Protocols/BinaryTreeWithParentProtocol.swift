@@ -123,16 +123,26 @@ extension BinaryTreeWithParentProtocol {
         
         guard let parent = self.parent else { return .none }
         
-        if parent.left?.key == self.key {
+        switch parentRelation {
+        case .root:
+            return .none
+            
+        case .leftSubtree:
             return parent.right
-        } else {
+            
+        case .rightSubtree:
             return parent.left
         }
         
+    }
+
+    var grandParent: Self? {
+        return parent?.parent
     }
     
     var uncle: Self? {
         return parent?.brother
     }
+    
     
 }
