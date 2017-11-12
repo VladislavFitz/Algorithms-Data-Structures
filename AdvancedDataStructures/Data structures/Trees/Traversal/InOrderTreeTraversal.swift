@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct InOrderTreeTraversal<Key: Comparable, Value>: TreeTraversal {
+struct InOrderTreeTraversal<Tree: BinaryTreeProtocol>: TreeTraversal {
     
-    var visit: (BinaryTree<Key, Value>) -> () = { print($0.key, terminator: " - ") }
+    var visit: (Tree) -> () = { print($0.key, terminator: " - ") }
     
-    func traverse(_ tree: BinaryTree<Key, Value>) {
+    func traverse(_ tree: Tree) {
 
         if let leftBranch = tree.left {
             traverse(leftBranch)

@@ -144,8 +144,8 @@ final class BinaryTree<Key: Comparable, Value>: BinaryTreeWithParentProtocol {
 extension BinaryTree {
     
     convenience init?(array: [(key: Key, value: Value)]) {
-        guard let firstElement = array.first else { return nil }
-        self.init(key: firstElement.key, value: firstElement.value, parent: .none)
+        guard let first = array.first else { return nil }
+        self.init(key: first.key, value: first.value, parent: .none)
         array.dropFirst().forEach { _ = set($0.value, for: $0.key) }
     }
     
@@ -154,18 +154,4 @@ extension BinaryTree {
         return BinaryTree<K, Void>(array: treeArray)
     }
     
-}
-
-//MARK: - CustomStringConvertible
-
-extension BinaryTree: CustomStringConvertible {
-    
-    var description: String {
-        
-        return BinaryTreePrinter.treeString(self, using: { (tree) in
-            return ("\(tree.key)", tree.left, tree.right)
-        })
-        
-    }
-        
 }

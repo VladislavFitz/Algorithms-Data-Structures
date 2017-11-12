@@ -22,7 +22,7 @@ struct BinaryTreeSort<Element: Comparable>: SortAlgorithm {
         
         var sortedArray: [Element] = []
 
-        var inOrderTraversal = InOrderTreeTraversal<Element, Void>()
+        var inOrderTraversal = InOrderTreeTraversal<BinaryTree<Element, Void>>()
         inOrderTraversal.visit = { sortedArray.append($0.key) }
         inOrderTraversal.traverse(tree)
 

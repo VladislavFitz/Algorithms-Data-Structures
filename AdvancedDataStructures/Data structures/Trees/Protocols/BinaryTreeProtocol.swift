@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BinaryTreeProtocol {
+protocol BinaryTreeProtocol: CustomStringConvertible {
     
     associatedtype Key: Comparable
     associatedtype Value
@@ -21,23 +21,9 @@ protocol BinaryTreeProtocol {
     var left: Self? { get }
     var right: Self? { get }
     
-    var height: Int { get }
-    var count: Int { get }
-    
-    var isLeaf: Bool { get }
-    
-    subscript(key: Key) -> Value? { get }
-    
-    func contains(key: Key) -> Bool
-    
     func value(forKey key: Key) -> Value?
-    func rotated(by direction: RotationDirection) -> Self
-    
     func set(_ value: Value, for key: Key) -> Self
     func removeValue(for key: Key) -> Self?
-    
-    func findMin() -> Self
-    func findMax() -> Self
     
 }
 
@@ -141,31 +127,9 @@ extension BinaryTreeProtocol {
     var isLeaf: Bool {
         return left == nil && right == nil
     }
-        
-}
-
-extension BinaryTreeProtocol {
     
-    func rotated(by direction: RotationDirection) -> Self {
-        
-        switch direction {
-            
-        case .left:
-            
-            guard let rightBranch = self.right else { return self }
-            
-            let leftBranch: Self = .with(key: key, value: value, left: left, right: rightBranch.left)
-            return .with(key: rightBranch.key, value: rightBranch.value, left: leftBranch, right: rightBranch.right)
-            
-        case .right:
-            
-            guard let leftBranch = self.left else { return self }
-            
-            let rightBranch: Self = .with(key: key, value: value, left: leftBranch.right, right: right)
-            return .with(key: leftBranch.key, value: leftBranch.value,  left: leftBranch.left, right: rightBranch)
-            
-        }
-        
+    var nodeDescription: String {
+        return "\(key)"
     }
-    
+        
 }

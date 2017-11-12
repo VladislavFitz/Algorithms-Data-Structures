@@ -9,9 +9,9 @@
 import Foundation
 
 protocol TreeTraversal {
-    associatedtype Key: Comparable
-    associatedtype Value
+
+    associatedtype Tree: BinaryTreeProtocol
     
-    var visit: (BinaryTree<Key, Value>) -> () { get }
-    func traverse(_ tree: BinaryTree<Key, Value>)
+    var visit: (Tree) -> () { get }
+    func traverse(_ tree: Tree)
 }

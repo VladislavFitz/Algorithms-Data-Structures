@@ -8,6 +8,4 @@
 
 import Foundation
 
-enum RotationDirection {
-    case left, right
-}
+

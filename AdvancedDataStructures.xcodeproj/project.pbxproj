@@ -36,6 +36,10 @@
 		516475F91FB79A3D006D76BA /* CombSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F786984F1FABD7EE000BA3B4 /* CombSort.swift */; };
 		516475FA1FB79A3D006D76BA /* BinaryTreeSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113A2561FAF59E30081B583 /* BinaryTreeSort.swift */; };
 		516475FE1FB7C8D4006D76BA /* RandomizedTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */; };
+		516476001FB83C8B006D76BA /* TreeRotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475FF1FB83C8B006D76BA /* TreeRotator.swift */; };
+		516476011FB83EDC006D76BA /* TreeRotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475FF1FB83C8B006D76BA /* TreeRotator.swift */; };
+		516476031FB85BB1006D76BA /* RandomizedTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516476021FB85BB1006D76BA /* RandomizedTreeTests.swift */; };
+		516476041FB85BCF006D76BA /* RandomizedTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */; };
 		51AD9EC41FB11E11008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		51AD9EC71FB26EEA008D4FE7 /* BinaryTreeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */; };
 		F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
@@ -90,6 +94,8 @@
 		516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeVerifier.swift; sourceTree = "<group>"; };
 		516475F11FB798E1006D76BA /* MutableCollection+Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Shuffle.swift"; sourceTree = "<group>"; };
 		516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizedTree.swift; sourceTree = "<group>"; };
+		516475FF1FB83C8B006D76BA /* TreeRotator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRotator.swift; sourceTree = "<group>"; };
+		516476021FB85BB1006D76BA /* RandomizedTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizedTreeTests.swift; sourceTree = "<group>"; };
 		51AD9EC31FB11E11008D4FE7 /* BinaryTreeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeProtocol.swift; sourceTree = "<group>"; };
 		F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdvancedDataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E9ADE1D56A677003FF5E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 				F75AA8321D6E579E009E63C2 /* TreeTests.swift */,
 				5113A2401FAE699F0081B583 /* BinaryTreeTests.swift */,
 				516251331FB5053B007B7903 /* AVLTreeTests.swift */,
+				516476021FB85BB1006D76BA /* RandomizedTreeTests.swift */,
 			);
 			path = Tree;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 			children = (
 				5113A2441FAF4A6D0081B583 /* BinaryTreePrinter.swift */,
 				516475E71FB78DCA006D76BA /* BinaryTreeVerifier.swift */,
+				516475FF1FB83C8B006D76BA /* TreeRotator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -400,6 +408,7 @@
 				516475FE1FB7C8D4006D76BA /* RandomizedTree.swift in Sources */,
 				F78728701E664341006FAEEF /* RedBlackTree.swift in Sources */,
 				5113A24F1FAF4EBB0081B583 /* InOrderTreeTraversal.swift in Sources */,
+				516476001FB83C8B006D76BA /* TreeRotator.swift in Sources */,
 				F786984D1FABD06A000BA3B4 /* ShellSort.swift in Sources */,
 				5113A2511FAF4EC20081B583 /* PostOrderTreeTraversal.swift in Sources */,
 				F792A41D1F9EA57F00E1FFD0 /* BinaryTree.swift in Sources */,
@@ -423,8 +432,10 @@
 				F786984B1FABD055000BA3B4 /* ShellSortTest.swift in Sources */,
 				516475FA1FB79A3D006D76BA /* BinaryTreeSort.swift in Sources */,
 				516475F51FB79A3D006D76BA /* BubbleSort.swift in Sources */,
+				516476031FB85BB1006D76BA /* RandomizedTreeTests.swift in Sources */,
 				F7A81B801D9F23C6003A7B51 /* main.swift in Sources */,
 				5113A2531FAF4EE80081B583 /* PreOrderTreeTraversal.swift in Sources */,
+				516476011FB83EDC006D76BA /* TreeRotator.swift in Sources */,
 				5113A2421FAE6B7E0081B583 /* BinaryTree.swift in Sources */,
 				516475E91FB79010006D76BA /* BinaryTreeVerifier.swift in Sources */,
 				F786983E1FABCC36000BA3B4 /* BubbleSortTest.swift in Sources */,
@@ -438,6 +449,7 @@
 				516475F91FB79A3D006D76BA /* CombSort.swift in Sources */,
 				516475F41FB79A3D006D76BA /* SortAlgorithm.swift in Sources */,
 				516475F31FB799F4006D76BA /* MutableCollection+Shuffle.swift in Sources */,
+				516476041FB85BCF006D76BA /* RandomizedTree.swift in Sources */,
 				516251341FB5053B007B7903 /* AVLTreeTests.swift in Sources */,
 				516475F81FB79A3D006D76BA /* ShellSort.swift in Sources */,
 				F78698491FABCF8C000BA3B4 /* Array+Convenience.swift in Sources */,

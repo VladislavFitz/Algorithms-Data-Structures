@@ -56,6 +56,10 @@ final class RedBlackTree<Key: Comparable, Value>: BinaryTreeWithParentProtocol {
         self.color = color
         self.parent = parent
     }
+    
+    var nodeDescription: String {
+        return "\(key) [\(color)]"
+    }
 
     func with(parent: RedBlackTree?) -> RedBlackTree {
         self.parent = parent
@@ -152,18 +156,3 @@ extension RedBlackTree {
     }
     
 }
-
-//MARK: - CustomStringConvertible
-
-extension RedBlackTree: CustomStringConvertible {
-    
-    var description: String {
-        
-        return BinaryTreePrinter.treeString(self, using: { (tree) in
-            return ("\(tree.key) [\(tree.color)]", tree.left, tree.right)
-        })
-        
-    }
-    
-}
-

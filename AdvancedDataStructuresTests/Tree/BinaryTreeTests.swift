@@ -12,8 +12,11 @@ import XCTest
 
 class BinaryTreeTests: XCTestCase {
     
-    func generateTree(count: Int = 10) -> BinaryTree<Int, Void> {
-        let shuffledArray = [4, 5, 0, 3, 9, 1, 7, 2, 8, 6].shuffled()
+    typealias TestTree = BinaryTree<Int, Void>
+    
+    func generateTree(size: Int = 100) -> TestTree {
+        
+        let shuffledArray = Array(0..<size).shuffled()
         
         let treeArray = shuffledArray.map({ (key: $0, value: ()) })
         
@@ -25,7 +28,7 @@ class BinaryTreeTests: XCTestCase {
         let tree = generateTree()
         
         var elements: [Int] = []
-        var inOrderTraversal = InOrderTreeTraversal<Int, Void>()
+        var inOrderTraversal = InOrderTreeTraversal<TestTree>()
         inOrderTraversal.visit = { elements.append($0.key) }
         
         inOrderTraversal.traverse(tree)
@@ -44,14 +47,14 @@ class BinaryTreeTests: XCTestCase {
     
     func testFindMin() {
         
-        let tree = generateTree()
+        let tree = generateTree(size: 10)
 
         XCTAssertEqual(tree.findMin().key, 0)
     }
     
     func testFindMax() {
         
-        let tree = generateTree()
+        let tree = generateTree(size: 10)
 
         XCTAssertEqual(tree.findMax().key, 9)
     }
@@ -76,11 +79,11 @@ class BinaryTreeTests: XCTestCase {
     
     func testRemove() {
         
-        var inOrderTraversal = InOrderTreeTraversal<Int, Void>()
+        var inOrderTraversal = InOrderTreeTraversal<TestTree>()
         var elements: [Int] = []
         inOrderTraversal.visit = { elements.append($0.key) }
 
-        var tree = generateTree()
+        var tree = generateTree(size: 10)
 //        print(tree)
         inOrderTraversal.traverse(tree)
         XCTAssertEqual(elements, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -114,7 +117,7 @@ class BinaryTreeTests: XCTestCase {
     
     func testLeftTurn() {
         
-        var preOrderTraversal = PreOrderTreeTraversal<Int, Void>()
+        var preOrderTraversal = PreOrderTreeTraversal<TestTree>()
         var elements: [Int] = []
         preOrderTraversal.visit = { elements.append($0.key) }
         
@@ -135,7 +138,7 @@ class BinaryTreeTests: XCTestCase {
     
     func testRightTurn() {
         
-        var preOrderTraversal = PreOrderTreeTraversal<Int, Void>()
+        var preOrderTraversal = PreOrderTreeTraversal<TestTree>()
         var elements: [Int] = []
         preOrderTraversal.visit = { elements.append($0.key) }
         

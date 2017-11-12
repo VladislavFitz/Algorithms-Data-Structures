@@ -177,17 +177,3 @@ extension AVLTree {
     }
     
 }
-
-//MARK:- CustomStringConvertible
-
-extension AVLTree: CustomStringConvertible {
-    
-    var description: String {
-        
-        return BinaryTreePrinter.treeString(self, using: { (tree) in
-            return ("\(tree.key)", tree.left, tree.right)
-        })
-        
-    }
-    
-}

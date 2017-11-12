@@ -17,13 +17,8 @@ enum ParentRelation {
 protocol BinaryTreeWithParentProtocol: BinaryTreeProtocol {
     
     var parent: Self? { get }
-    var parentRelation: ParentRelation { get }
     
     init(key: Key, value: Value, left: Self?, right: Self?, parent: Self?)
-    
-    func root() -> Self
-    func next() -> Self?
-    func previous() -> Self?
     
 }
 
@@ -32,6 +27,32 @@ extension BinaryTreeWithParentProtocol {
     static func with(key: Key, value: Value, left: Self?, right: Self?, parent: Self?) -> Self {
         return Self(key: key, value: value, left: left, right: right, parent: parent)
     }
+    
+    func rotated(by direction: RotationDirection) -> Self {
+        
+        switch direction {
+            
+        case .left:
+            
+            guard let rightBranch = self.right else { return self }
+            
+            let leftBranch: Self = .with(key: key, value: value, left: left, right: rightBranch.left, parent: rightBranch)
+            return .with(key: rightBranch.key, value: rightBranch.value, left: leftBranch, right: rightBranch.right, parent: parent)
+            
+        case .right:
+            
+            guard let leftBranch = self.left else { return self }
+            
+            let rightBranch: Self = .with(key: key, value: value, left: leftBranch.right, right: right, parent: leftBranch)
+            return .with(key: leftBranch.key, value: leftBranch.value,  left: leftBranch.left, right: rightBranch, parent: parent)
+            
+        }
+        
+    }
+    
+}
+
+extension BinaryTreeWithParentProtocol {
     
     var parentRelation: ParentRelation {
         
@@ -49,6 +70,7 @@ extension BinaryTreeWithParentProtocol {
         
         fatalError("Impossible position")
     }
+
     
     func root() -> Self {
         var current = self
@@ -92,32 +114,6 @@ extension BinaryTreeWithParentProtocol {
         return node.parent
         
     }
-    
-    func rotated(by direction: RotationDirection) -> Self {
-        
-        switch direction {
-            
-        case .left:
-            
-            guard let rightBranch = self.right else { return self }
-            
-            let leftBranch: Self = .with(key: key, value: value, left: left, right: rightBranch.left, parent: rightBranch)
-            return .with(key: rightBranch.key, value: rightBranch.value, left: leftBranch, right: rightBranch.right, parent: parent)
-            
-        case .right:
-            
-            guard let leftBranch = self.left else { return self }
-            
-            let rightBranch: Self = .with(key: key, value: value, left: leftBranch.right, right: right, parent: leftBranch)
-            return .with(key: leftBranch.key, value: leftBranch.value,  left: leftBranch.left, right: rightBranch, parent: parent)
-            
-        }
-        
-    }
-    
-}
-
-extension BinaryTreeWithParentProtocol {
     
     var brother: Self? {
         
