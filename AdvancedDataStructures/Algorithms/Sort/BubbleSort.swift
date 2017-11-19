@@ -8,11 +8,20 @@
 
 import Foundation
 
-struct BubbleSort<Element: Comparable>: SortAlgorithm {
+class BubbleSort<E: Comparable>: SortAlgorithm {
     
-    func sort(_ array: [Element]) -> [Element] {
+    typealias Element = E
+    
+    let input: [Element]
+    var output: [Element] = []
+    
+    init(input: [Element]) {
+        self.input = input
+    }
+    
+    func perform() {
         
-        var array = array
+        var array = input
         
         var sorted: Bool = false
         
@@ -30,8 +39,8 @@ struct BubbleSort<Element: Comparable>: SortAlgorithm {
             }
         }
         
-        return array
-
+        output = array
+        
     }
 
 }

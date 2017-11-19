@@ -17,9 +17,9 @@ class BinaryTreeSortTests: XCTestCase {
         var shuffledArray = Array(0..<1000)
         shuffledArray.shuffle()
         
-        let sortedArray = BinaryTreeSort<Int>().sort(shuffledArray)
-        
-        XCTAssertTrue(sortedArray.isSorted)
+        let sort = BinaryTreeSort<Int>(input: shuffledArray)
+        sort.perform()        
+        XCTAssertTrue(sort.output.isSorted)
         
     }
     

@@ -8,10 +8,9 @@
 
 import Foundation
 
-protocol SortAlgorithm {
+protocol SortAlgorithm: Algorithm where Input == [Element], Output == [Element] {
     
     associatedtype Element: Comparable
     
-    func sort(_ array: [Element]) -> [Element]
     
 }

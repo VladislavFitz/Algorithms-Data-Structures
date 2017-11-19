@@ -8,17 +8,23 @@
 
 import Foundation
 
-struct ShellSort<Element: Comparable>: SortAlgorithm {
+class ShellSort<E: Comparable>: SortAlgorithm {
+    
+    typealias Element = E
     
     let n: Int
+
+    let input: [Element]
+    var output: [Element] = []
     
-    init(n: Int) {
+    init(input: [Element], n: Int) {
         self.n = n
+        self.input = input
     }
     
-    func sort(_ array: [Element]) -> [Element] {
-        
-        var mutableArray = array
+    func perform() {
+
+        var mutableArray = input
         
         var step = n
     
@@ -46,7 +52,7 @@ struct ShellSort<Element: Comparable>: SortAlgorithm {
         }
         
         
-        return mutableArray
+        output = mutableArray
 
     }
     

@@ -17,15 +17,15 @@ class QuickSortTests: XCTestCase {
         var shuffledArray = Array(0..<1000)
         shuffledArray.shuffle()
         
-        let quickSort = QuickSort<Int>(getPivot: { array in
+        let quickSort = QuickSort<Int>(input: shuffledArray, getPivot: { array in
             let indexes = Array(array.startIndex..<array.endIndex)
             let pivotIndex = indexes[indexes.count/2]
             return array[pivotIndex]
         })
         
-        let sortedArray = quickSort.sort(shuffledArray)
+        quickSort.perform()
         
-        XCTAssertTrue(sortedArray.isSorted)
+        XCTAssertTrue(quickSort.output.isSorted)
         
     }
     

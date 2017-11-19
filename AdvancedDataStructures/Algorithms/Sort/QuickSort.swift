@@ -8,13 +8,19 @@
 
 import Foundation
 
-struct QuickSort<Element>: SortAlgorithm where Element: Comparable {
+class QuickSort<E: Comparable>: SortAlgorithm {
     
     typealias GetPivot<Element> = (ArraySlice<Element>) -> Element where Element: Comparable
     
+    typealias Element = E
+    
+    let input: [Element]
+    var output: [Element] = []
+    
     var getPivot: GetPivot<Element>
     
-    init(getPivot: @escaping GetPivot<Element>) {
+    init(input: [Element], getPivot: @escaping GetPivot<Element>) {
+        self.input = input
         self.getPivot = getPivot
     }
     
@@ -59,12 +65,12 @@ struct QuickSort<Element>: SortAlgorithm where Element: Comparable {
         
     }
     
-    func sort(_ array: [Element]) -> [Element] {
-        
-        var slice = ArraySlice(array)
+    func perform() {
+
+        var slice = ArraySlice(input)
         sliceQSort(array: &slice)
         
-        return Array(slice)
+        output = Array(slice)
         
     }
     

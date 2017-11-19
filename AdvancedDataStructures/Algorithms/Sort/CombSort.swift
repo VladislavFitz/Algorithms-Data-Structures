@@ -8,13 +8,22 @@
 
 import Foundation
 
-struct CombSort<Element: Comparable>: SortAlgorithm {
+class CombSort<E: Comparable>: SortAlgorithm {
     
     private let fakt: Double = 1.2473309
     
-    func sort(_ array: [Element]) -> [Element] {
-        
-        var mutableArray = array
+    typealias Element = E
+    
+    let input: [Element]
+    var output: [Element] = []
+    
+    init(input: [Element]) {
+        self.input = input
+    }
+
+    func perform() {
+
+        var mutableArray = input
         
         var isSorted: Bool = false
 
@@ -26,7 +35,7 @@ struct CombSort<Element: Comparable>: SortAlgorithm {
                 isSorted = true
             }
             
-            for index in 0..<mutableArray.endIndex where index + step < array.count {
+            for index in 0..<mutableArray.endIndex where index + step < input.count {
             
                 if mutableArray[index] > mutableArray[index + step]  {
                     mutableArray.swapAt(index, index + step)
@@ -41,7 +50,7 @@ struct CombSort<Element: Comparable>: SortAlgorithm {
             
         }
         
-        return mutableArray
+        output = mutableArray
 
     }
 

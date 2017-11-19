@@ -8,12 +8,24 @@
 
 import Foundation
 
-struct BinaryTreeSort<Element: Comparable>: SortAlgorithm {
+class BinaryTreeSort<E: Comparable>: SortAlgorithm {
     
-    func sort(_ array: [Element]) -> [Element] {
+    typealias Element = E
+    
+    let input: [Element]
+    var output: [Element] = []
+    
+    init(input: [Element]) {
+        self.input = input
+    }
+    
+    func perform() {
+
+        let array = input
         
         if array.isEmpty {
-            return []
+            output = []
+            return
         }
         
         let treeArray = array.map({ (key: $0, value: ()) })
@@ -26,7 +38,7 @@ struct BinaryTreeSort<Element: Comparable>: SortAlgorithm {
         inOrderTraversal.visit = { sortedArray.append($0.key) }
         inOrderTraversal.traverse(tree)
 
-        return sortedArray
+        output = sortedArray
 
     }
     

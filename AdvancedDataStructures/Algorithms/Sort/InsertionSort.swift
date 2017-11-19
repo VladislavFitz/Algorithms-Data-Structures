@@ -8,11 +8,20 @@
 
 import Foundation
 
-struct InsertionSort<Element: Comparable>: SortAlgorithm {
+class InsertionSort<E: Comparable>: SortAlgorithm {
     
-    func sort(_ array: [Element]) -> [Element] {
-        
-        var array = array
+    typealias Element = E
+    
+    let input: [Element]
+    var output: [Element] = []
+    
+    init(input: [Element]) {
+        self.input = input
+    }
+    
+    func perform() {
+
+        var array = input
         
         for lastUnsortedIndex in 0..<array.endIndex {
             
@@ -31,7 +40,7 @@ struct InsertionSort<Element: Comparable>: SortAlgorithm {
             
         }
         
-        return array
+        output = array
         
     }
     

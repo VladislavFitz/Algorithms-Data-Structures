@@ -18,9 +18,10 @@ class ShellSortTests: XCTestCase {
         //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         shuffledArray.shuffle()
         
-        let sortedArray = ShellSort<Int>(n: 5).sort(shuffledArray)
+        let sort = ShellSort<Int>(input: shuffledArray, n: 5)
+        sort.perform()
         
-        XCTAssertTrue(sortedArray.isSorted)
+        XCTAssertTrue(sort.output.isSorted)
         
     }
     

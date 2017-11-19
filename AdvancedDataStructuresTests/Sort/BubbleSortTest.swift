@@ -17,9 +17,10 @@ class BubbleSortTests: XCTestCase {
         var shuffledArray = Array(0..<1000)
         shuffledArray.shuffle()
         
-        let sortedArray = BubbleSort<Int>().sort(shuffledArray)
+        let sort = BubbleSort<Int>(input: shuffledArray)
+        sort.perform()
         
-        XCTAssertTrue(sortedArray.isSorted)
+        XCTAssertTrue(sort.output.isSorted)
         
     }
 
