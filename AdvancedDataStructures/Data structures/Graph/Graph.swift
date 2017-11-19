@@ -12,21 +12,23 @@ protocol GraphRepresentation {
     var nodesCount: Int { get }
 }
 
-protocol WeightedGraph {
+protocol DirectedGraph: GraphRepresentation {
     
-    func weightOfArc(from nodeA: Int, to nodeB: Int) -> Float
-    
-}
-
-protocol DirectedGraph {
-    
-    func hasArc(from nodeA: Int, to nodeB: Int)
-    func setArc(from nodeA: Int, to nodeB: Int)
-    func removeArc(from nodeA: Int, to nodeB: Int)
+    func hasArc(from nodeA: Int, to nodeB: Int) -> Bool
+    mutating func setArc(from nodeA: Int, to nodeB: Int)
+    mutating func removeArc(from nodeA: Int, to nodeB: Int)
     
 }
 
-struct AdjacencyMatrix: GraphRepresentation {
+protocol WeightedGraph: DirectedGraph {
+    
+    func weightOfArc(from nodeA: Int, to nodeB: Int) -> Int
+    mutating func setArc(from nodeA: Int, to nodeB: Int, withWeight weight: Int)
+
+}
+
+
+struct AdjacencyMatrix: WeightedGraph {
     
     private var matrix: Array<Array<Int>>
     
@@ -38,18 +40,31 @@ struct AdjacencyMatrix: GraphRepresentation {
         self.matrix = Array<Array<Int>>(repeating: Array<Int>(repeating: 0, count: nodesCount), count: nodesCount)
     }
     
-    func hasArc(between nodeA: Int, and nodeB: Int) -> Bool {
-        return matrix[nodeA][nodeB] == 1
+    func hasArc(from nodeA: Int, to nodeB: Int) -> Bool {
+        return matrix[nodeA][nodeB] > 0
     }
     
-    mutating func setArc(between nodeA: Int, and nodeB: Int) {
+    mutating func setArc(from nodeA: Int, to nodeB: Int) {
         matrix[nodeA][nodeB] = 1
         matrix[nodeB][nodeA] = 1
     }
     
-    mutating func removeArc(between nodeA: Int, and nodeB: Int) {
+    mutating func removeArc(from nodeA: Int, to nodeB: Int) {
         matrix[nodeA][nodeB] = 0
         matrix[nodeB][nodeA] = 0
+    }
+    
+    func weightOfArc(from nodeA: Int, to nodeB: Int) -> Int {
+        return matrix[nodeA][nodeB]
+    }
+    
+    mutating func setArc(from nodeA: Int, to nodeB: Int, withWeight weight: Int) {
+        matrix[nodeA][nodeB] = weight
+        matrix[nodeB][nodeA] = weight
+    }
+    
+    subscript(key: Int) -> [Int] {
+        return matrix[key]
     }
     
 }
