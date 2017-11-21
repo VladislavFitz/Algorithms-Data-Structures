@@ -16,6 +16,6 @@ protocol Algorithm {
     var input: Input { get }
     var output: Output { get }
     
-    func perform()
+    mutating func perform()
     
 }

@@ -36,6 +36,10 @@ struct AdjacencyMatrix: WeightedGraph {
         return matrix.count
     }
     
+    func neighbours(ofVertex vertex: Int) -> [Int] {
+        return matrix[vertex].enumerated().filter({ $0.element != 0 }).map({ $0.offset })
+    }
+    
     init(nodesCount: Int) {
         self.matrix = Array<Array<Int>>(repeating: Array<Int>(repeating: 0, count: nodesCount), count: nodesCount)
     }
