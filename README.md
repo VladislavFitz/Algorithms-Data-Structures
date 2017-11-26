@@ -9,7 +9,9 @@ Currently implemented:
 - Shell sort
 - Quick sort
 - Binary tree sort
+- Heap sort
 ## Data structures:
 - Binary tree
 - AVL tree
 - Red-Black tree (in progress)
+- Binary heap
