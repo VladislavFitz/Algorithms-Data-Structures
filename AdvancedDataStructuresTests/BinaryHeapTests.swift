@@ -14,11 +14,27 @@ class BinaryHeapTests: XCTestCase {
     
     func testConstruction() {
         
-        let array = Array(0..<100).shuffled()
+        let array = Array(0..<200).shuffled()
         
         let binaryHeap = BinaryHeap(array)
         
         XCTAssertTrue(binaryHeap.isCorrect())
+        
+    }
+    
+    func testExtraction() {
+        
+        let array = Array(0..<200).shuffled()
+        
+        var binaryHeap = BinaryHeap(array)
+        
+        var extractedValues: [Int] = []
+        
+        while let extractedValue = binaryHeap.extract() {
+            extractedValues.append(extractedValue)
+        }
+        
+        XCTAssertTrue(Array(extractedValues.reversed()).isSorted)
         
     }
     
