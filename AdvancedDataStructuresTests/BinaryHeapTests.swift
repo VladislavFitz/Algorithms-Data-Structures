@@ -22,6 +22,16 @@ class BinaryHeapTests: XCTestCase {
         
     }
     
+    func testMinConstruction() {
+        
+        let array = Array(0..<200).shuffled()
+        
+        let binaryHeap = BinaryHeap(array, direction: .min)
+        
+        XCTAssertTrue(binaryHeap.isCorrect())
+        
+    }
+    
     func testExtraction() {
         
         let array = Array(0..<200).shuffled()
@@ -35,6 +45,22 @@ class BinaryHeapTests: XCTestCase {
         }
         
         XCTAssertTrue(Array(extractedValues.reversed()).isSorted)
+        
+    }
+    
+    func testMinExtraction() {
+        
+        let array = Array(0..<200).shuffled()
+        
+        var binaryHeap = BinaryHeap(array, direction: .min)
+        
+        var extractedValues: [Int] = []
+        
+        while let extractedValue = binaryHeap.extract() {
+            extractedValues.append(extractedValue)
+        }
+        
+        XCTAssertTrue(extractedValues.isSorted)
         
     }
     

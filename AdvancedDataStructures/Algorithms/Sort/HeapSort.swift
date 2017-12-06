@@ -28,7 +28,7 @@ class HeapSort<E: Comparable>: SortAlgorithm {
             return
         }
         
-        var heap = BinaryHeap(array)
+        var heap = BinaryHeap(array, direction: .min)
         
         var sortedArray: [Element] = []
         
@@ -36,7 +36,7 @@ class HeapSort<E: Comparable>: SortAlgorithm {
             sortedArray.append(element)
         }
         
-        output = sortedArray.reversed()
+        output = sortedArray
         
     }
     

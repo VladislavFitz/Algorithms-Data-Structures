@@ -8,15 +8,20 @@
 
 import Foundation
 
+
 struct BinaryHeap<Element: Comparable> {
     
+    let direction: Direction
     fileprivate var elements: [Element] = []
     
-    private init(_ elements: [Element] = []) {
+    private init(_ elements: [Element] = [], direction: Direction = .max) {
+        self.direction = direction
         self.elements = elements
     }
     
-    init<S: Sequence>(_ sequence: S) where S.Element == Element {
+    init<S: Sequence>(_ sequence: S, direction: Direction = .max) where S.Element == Element {
+        
+        self.direction = direction
         
         for element in sequence {
             add(element)
@@ -79,12 +84,21 @@ struct BinaryHeap<Element: Comparable> {
         var elementIndex = elements.endIndex - 1
         var parentIndex = (elementIndex - 1) / 2
         
-        while elementIndex > 0 && elements[parentIndex] < elements[elementIndex] {
+        while elementIndex > 0 && !ordered(elements[elementIndex], elements[parentIndex]) {
             elements.swapAt(elementIndex, parentIndex)
             elementIndex = parentIndex
             parentIndex = (elementIndex - 1) / 2
         }
         
+    }
+    
+    func ordered(_ lhs: Element, _ rhs: Element) -> Bool {
+        switch direction {
+        case .max:
+            return lhs < rhs
+        case .min:
+            return lhs > rhs
+        }
     }
     
     mutating func remove(_ element: Element) {
@@ -111,11 +125,11 @@ struct BinaryHeap<Element: Comparable> {
         
         while true {
             
-            if let leftChild = leftChildForElement(atIndex: elementIndex), leftChild > elements[largestChildIndex] {
+            if let leftChild = leftChildForElement(atIndex: elementIndex), !ordered(leftChild, elements[largestChildIndex]) {
                 largestChildIndex = leftIndex(forElementAtIndex: elementIndex)
             }
             
-            if let rightChild = rightChildForElement(atIndex: elementIndex), rightChild > elements[largestChildIndex] {
+            if let rightChild = rightChildForElement(atIndex: elementIndex), !ordered(rightChild, elements[largestChildIndex]) {
                 largestChildIndex = rightIndex(forElementAtIndex: elementIndex)
             }
             
@@ -136,11 +150,11 @@ struct BinaryHeap<Element: Comparable> {
             
             let currentElement = elements[elementIndex]
             
-            if let leftChild = leftChildForElement(atIndex: elementIndex), leftChild > currentElement {
+            if let leftChild = leftChildForElement(atIndex: elementIndex), !ordered(leftChild, currentElement) {
                 return false
             }
             
-            if let rightChild = rightChildForElement(atIndex: elementIndex), rightChild > currentElement {
+            if let rightChild = rightChildForElement(atIndex: elementIndex), !ordered(rightChild, currentElement) {
                 return false
             }
             
@@ -193,6 +207,14 @@ struct BinaryHeap<Element: Comparable> {
     
     var internalDescription: String {
         return "\(elements)"
+    }
+    
+}
+
+extension BinaryHeap {
+    
+    enum Direction {
+        case min, max
     }
     
 }
