@@ -12,7 +12,7 @@ import Foundation
 struct BinaryHeap<Element: Comparable> {
     
     let direction: Direction
-    fileprivate var elements: [Element] = []
+    var elements: [Element] = []
     
     private init(_ elements: [Element] = [], direction: Direction = .max) {
         self.direction = direction
@@ -101,19 +101,33 @@ struct BinaryHeap<Element: Comparable> {
         }
     }
     
-    mutating func remove(_ element: Element) {
+    mutating func remove(_ elementToRemove: Element) {
+        
+        for (index, element) in elements.enumerated() {
+            
+            if element == elementToRemove {
+                _ = remove(atIndex: index)
+            }
+            
+        }
         
     }
     
-    mutating func extract() -> Element? {
+    mutating func pop() -> Element? {
+        return remove(atIndex: 0)
+    }
+    
+    private mutating func remove(atIndex index: Int) -> Element? {
+        
         guard let rootElement = elements.first else { return .none }
         
-        elements[0] = elements[elements.endIndex-1]
+        elements[index] = elements[elements.endIndex-1]
         elements.remove(at: elements.endIndex-1)
         
-        heapify(fromElementAtIndex: 0)
+        heapify(fromElementAtIndex: index)
         
         return rootElement
+        
     }
     
     private mutating func heapify(fromElementAtIndex elementIndex: Int) {

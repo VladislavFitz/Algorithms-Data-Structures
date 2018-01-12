@@ -40,14 +40,14 @@ class BinaryHeapTests: XCTestCase {
         
         var extractedValues: [Int] = []
         
-        while let extractedValue = binaryHeap.extract() {
+        while let extractedValue = binaryHeap.pop() {
             extractedValues.append(extractedValue)
         }
         
         XCTAssertTrue(Array(extractedValues.reversed()).isSorted)
         
     }
-    
+
     func testMinExtraction() {
         
         let array = Array(0..<200).shuffled()
@@ -56,11 +56,25 @@ class BinaryHeapTests: XCTestCase {
         
         var extractedValues: [Int] = []
         
-        while let extractedValue = binaryHeap.extract() {
+        while let extractedValue = binaryHeap.pop() {
             extractedValues.append(extractedValue)
         }
         
         XCTAssertTrue(extractedValues.isSorted)
+    }
+    
+    func testRemovel() {
+        
+        let array = Array(0..<10).shuffled()
+
+        var binaryHeap = BinaryHeap(array)
+
+        while !binaryHeap.isEmpty {
+            let index = Int(arc4random()) % binaryHeap.count
+            let elementToRemove = binaryHeap.elements[index]
+            _ = binaryHeap.remove(elementToRemove)
+            XCTAssertTrue(binaryHeap.isCorrect())
+        }
         
     }
     

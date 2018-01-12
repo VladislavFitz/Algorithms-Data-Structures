@@ -32,7 +32,7 @@ class HeapSort<E: Comparable>: SortAlgorithm {
         
         var sortedArray: [Element] = []
         
-        while let element = heap.extract() {
+        while let element = heap.pop() {
             sortedArray.append(element)
         }
         
