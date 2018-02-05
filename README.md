@@ -15,3 +15,4 @@ Currently implemented:
 - AVL tree
 - Red-Black tree (in progress)
 - Binary heap
+- Union-Find
