@@ -60,6 +60,8 @@
 		AFFC29271FCB69800007A467 /* HeapSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFC29261FCB69800007A467 /* HeapSort.swift */; };
 		AFFC29281FCB69800007A467 /* HeapSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFC29261FCB69800007A467 /* HeapSort.swift */; };
 		AFFC292B1FCB6A260007A467 /* HeapSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFC29291FCB6A260007A467 /* HeapSortTests.swift */; };
+		AFFC45582027C5DE00D2A682 /* UnionFindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFC45572027C5DE00D2A682 /* UnionFindTests.swift */; };
+		AFFC455A2027D06100D2A682 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ED1A6F1DAAE836006F17CE /* UnionFind.swift */; };
 		F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
 		F74001391FC38FE8000EEA8E /* BinaryHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74001381FC38FE7000EEA8E /* BinaryHeapTests.swift */; };
 		F740013B1FC4D839000EEA8E /* DFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F740013A1FC4D839000EEA8E /* DFS.swift */; };
@@ -92,7 +94,7 @@
 		F7A7868C1FA27C4D00106C89 /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7868B1FA27C4D00106C89 /* BubbleSort.swift */; };
 		F7A81B7C1D99E84A003A7B51 /* TreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75AA8321D6E579E009E63C2 /* TreeTests.swift */; };
 		F7A81B801D9F23C6003A7B51 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E9ADE1D56A677003FF5E7 /* main.swift */; };
-		F7ED1A701DAAE836006F17CE /* DSU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ED1A6F1DAAE836006F17CE /* DSU.swift */; };
+		F7ED1A701DAAE836006F17CE /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7ED1A6F1DAAE836006F17CE /* UnionFind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -135,6 +137,7 @@
 		AFA2F1EE1FC2152F00A34177 /* DijkstraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraTests.swift; sourceTree = "<group>"; };
 		AFFC29261FCB69800007A467 /* HeapSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeapSort.swift; sourceTree = "<group>"; };
 		AFFC29291FCB6A260007A467 /* HeapSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeapSortTests.swift; sourceTree = "<group>"; };
+		AFFC45572027C5DE00D2A682 /* UnionFindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFindTests.swift; sourceTree = "<group>"; };
 		F72E9ADB1D56A677003FF5E7 /* AdvancedDataStructures */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdvancedDataStructures; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72E9ADE1D56A677003FF5E7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F74001381FC38FE7000EEA8E /* BinaryHeapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapTests.swift; sourceTree = "<group>"; };
@@ -163,7 +166,7 @@
 		F7A7868B1FA27C4D00106C89 /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
 		F7A81B741D99E7F8003A7B51 /* AdvancedDataStructuresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdvancedDataStructuresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A81B781D99E7F8003A7B51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7ED1A6F1DAAE836006F17CE /* DSU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSU.swift; sourceTree = "<group>"; };
+		F7ED1A6F1DAAE836006F17CE /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,7 +247,7 @@
 		516475EE1FB797FB006D76BA /* DSU */ = {
 			isa = PBXGroup;
 			children = (
-				F7ED1A6F1DAAE836006F17CE /* DSU.swift */,
+				F7ED1A6F1DAAE836006F17CE /* UnionFind.swift */,
 			);
 			path = DSU;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				AFA2F1E21FC1F92A00A34177 /* SearchInsertPositionTests.swift */,
 				AFA2F1E91FC2017A00A34177 /* FirstBadVersionTests.swift */,
 				F74001381FC38FE7000EEA8E /* BinaryHeapTests.swift */,
+				AFFC45572027C5DE00D2A682 /* UnionFindTests.swift */,
 			);
 			path = AdvancedDataStructuresTests;
 			sourceTree = "<group>";
@@ -466,7 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5113A2451FAF4A6D0081B583 /* BinaryTreePrinter.swift in Sources */,
-				F7ED1A701DAAE836006F17CE /* DSU.swift in Sources */,
+				F7ED1A701DAAE836006F17CE /* UnionFind.swift in Sources */,
 				AFA2F1E11FC1F91D00A34177 /* SearchInsertPosition.swift in Sources */,
 				F75A6B4B1FC37FF300C834ED /* BinaryHeap.swift in Sources */,
 				516475E51FB7333B006D76BA /* BinaryTreeWithParentProtocol.swift in Sources */,
@@ -534,7 +538,9 @@
 				AFA2F1E61FC1FA5400A34177 /* ThreeSum.swift in Sources */,
 				516475F91FB79A3D006D76BA /* CombSort.swift in Sources */,
 				516475F41FB79A3D006D76BA /* SortAlgorithm.swift in Sources */,
+				AFFC455A2027D06100D2A682 /* UnionFind.swift in Sources */,
 				516475F31FB799F4006D76BA /* MutableCollection+Shuffle.swift in Sources */,
+				AFFC45582027C5DE00D2A682 /* UnionFindTests.swift in Sources */,
 				F74001391FC38FE8000EEA8E /* BinaryHeapTests.swift in Sources */,
 				516476041FB85BCF006D76BA /* RandomizedTree.swift in Sources */,
 				516251341FB5053B007B7903 /* AVLTreeTests.swift in Sources */,
