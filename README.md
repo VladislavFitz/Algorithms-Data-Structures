@@ -2,7 +2,7 @@
 Algorithms and data structures implemented in Swift 4 
 ---
 Currently implemented:
-## Sort algorithms:
+## Algorithms:
 - Bubble sort
 - Comb sort
 - Insertion sort
@@ -10,6 +10,8 @@ Currently implemented:
 - Quick sort
 - Binary tree sort
 - Heap sort
+- Dijkstra
+- Kruskal
 ## Data structures:
 - Binary tree
 - AVL tree
