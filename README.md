@@ -21,9 +21,11 @@ Algorithms and data structures implemented in Swift
 - [Depth-first search](AdvancedDataStructures/Data%20structures/Graph/DFS.swift)
 - [Breadth-first search](AdvancedDataStructures/Data%20structures/Graph/BFS.swift)
 
-## Data structures:
+## Data structures
 - [Binary heap](AdvancedDataStructures/Data%20structures/BinaryHeap.swift)
 - [Union-Find](AdvancedDataStructures/Data%20structures/DSU/UnionFind.swift)
+### Tree
 - [Binary tree](AdvancedDataStructures/Data%20structures/Trees/BinaryTree.swift)
 - [AVL tree](AdvancedDataStructures/Data%20structures/Trees/AVLTree.swift)
+- [Randomized tree](AdvancedDataStructures/Data%20structures/Trees/RandomizedTree.swift)
 - [Red-Black tree (wip)](AdvancedDataStructures/Data%20structures/Trees/RedBlackTree.swift)
