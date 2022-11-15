@@ -1,5 +1,5 @@
 # Algorithms & Data Structures
-Algorithms and data structures implemented in Swift 4 
+Algorithms and data structures implemented in Swift
 ---
 Currently implemented:
 ## Algorithms:
@@ -16,5 +16,5 @@ Currently implemented:
 - Binary tree
 - AVL tree
 - Red-Black tree (in progress)
-- Binary heap
+- [Binary heap](https://github.com/VladislavFitz/Algorithms-Data-Structures/blob/master/AdvancedDataStructures/Data%20structures/BinaryHeap.swift)
 - Union-Find
