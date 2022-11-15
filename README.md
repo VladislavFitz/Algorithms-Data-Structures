@@ -1,17 +1,17 @@
 # Algorithms & Data Structures
 Algorithms and data structures implemented in Swift
----
-Currently implemented:
+
 ## Algorithms:
-- Bubble sort
-- Comb sort
-- Insertion sort
-- Shell sort
-- Quick sort
-- Binary tree sort
-- Heap sort
-- Dijkstra
-- Kruskal
+- [Bubble sort](AdvancedDataStructures/Algorithms/Sort/BubbleSort.swift)
+- [Comb sort](AdvancedDataStructures/Algorithms/Sort/CombSort.swift)
+- [Insertion sort](AdvancedDataStructures/Algorithms/Sort/InsertionSort.swift)
+- [Shell sort](AdvancedDataStructures/Algorithms/Sort/ShellSort.swift)
+- [Quick sort](AdvancedDataStructures/Algorithms/Sort/QuickSort.swift)
+- [Binary tree sort](AdvancedDataStructures/Algorithms/Sort/BinaryTreeSort.swift)
+- [Heap sort](AdvancedDataStructures/Algorithms/Sort/HeapSort.swift)
+- [Dijkstra](AdvancedDataStructures/Algorithms/DijkstraAlgorithm.swift)
+- [Kruskal]()
+
 ## Data structures:
 - [Binary tree](AdvancedDataStructures/Data%20structures/Trees/BinaryTree.swift)
 - [AVL tree](AdvancedDataStructures/Data%20structures/Trees/AVLTree.swift)
