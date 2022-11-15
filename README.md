@@ -11,6 +11,8 @@ Algorithms and data structures implemented in Swift
 - [Heap sort](AdvancedDataStructures/Algorithms/Sort/HeapSort.swift)
 - [Dijkstra](AdvancedDataStructures/Algorithms/DijkstraAlgorithm.swift)
 - [Kruskal]()
+- [Depth-first search](AdvancedDataStructures/Data%20structures/Graph/DFS.swift)
+- [Breadth-first search](AdvancedDataStructures/Data%20structures/Graph/BFS.swift)
 
 ## Data structures:
 - [Binary tree](AdvancedDataStructures/Data%20structures/Trees/BinaryTree.swift)
