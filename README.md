@@ -17,4 +17,4 @@ Currently implemented:
 - AVL tree
 - Red-Black tree (in progress)
 - [Binary heap](https://github.com/VladislavFitz/Algorithms-Data-Structures/blob/master/AdvancedDataStructures/Data%20structures/BinaryHeap.swift)
-- Union-Find
+- [Union-Find](https://github.com/VladislavFitz/Algorithms-Data-Structures/blob/master/AdvancedDataStructures/Data%20structures/DSU/UnionFind.swift)
