@@ -13,8 +13,8 @@ Currently implemented:
 - Dijkstra
 - Kruskal
 ## Data structures:
-- Binary tree
-- AVL tree
-- [Red-Black tree (wip)](https://github.com/VladislavFitz/Algorithms-Data-Structures/blob/master/AdvancedDataStructures/Data%20structures/Trees/RedBlackTree.swift)
-- [Binary heap](https://github.com/VladislavFitz/Algorithms-Data-Structures/blob/master/AdvancedDataStructures/Data%20structures/BinaryHeap.swift)
-- [Union-Find](https://github.com/VladislavFitz/Algorithms-Data-Structures/blob/master/AdvancedDataStructures/Data%20structures/DSU/UnionFind.swift)
+- [Binary tree](AdvancedDataStructures/Data%20structures/Trees/BinaryTree.swift)
+- [AVL tree](AdvancedDataStructures/Data%20structures/Trees/AVLTree.swift)
+- [Red-Black tree (wip)](AdvancedDataStructures/Data%20structures/Trees/RedBlackTree.swift)
+- [Binary heap](AdvancedDataStructures/Data%20structures/BinaryHeap.swift)
+- [Union-Find](AdvancedDataStructures/Data%20structures/DSU/UnionFind.swift)
