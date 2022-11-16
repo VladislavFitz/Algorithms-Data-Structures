@@ -8,38 +8,39 @@
 
 import Foundation
 
-class BinaryTreeSort<E: Comparable>: SortAlgorithm {
+class BinaryTreeSort<E: Comparable & Equatable>: SortAlgorithm {
+  
+  typealias Element = E
+  
+  let input: [Element]
+  var output: [Element] = []
+  
+  init(input: [Element]) {
+    self.input = input
+  }
+  
+  func perform() {
     
-    typealias Element = E
+    let array = input
     
-    let input: [Element]
-    var output: [Element] = []
-    
-    init(input: [Element]) {
-        self.input = input
+    if array.isEmpty {
+      output = []
+      return
     }
     
-    func perform() {
-
-        let array = input
-        
-        if array.isEmpty {
-            output = []
-            return
-        }
-        
-        let treeArray = array.map({ (key: $0, value: ()) })
-        
-        let tree = BinaryTree(array: treeArray)!
-        
-        var sortedArray: [Element] = []
-
-        var inOrderTraversal = InOrderTreeTraversal<BinaryTree<Element, Void>>()
-        inOrderTraversal.visit = { sortedArray.append($0.key) }
-        inOrderTraversal.traverse(tree)
-
-        output = sortedArray
-
+    guard let tree = BinaryTree(array) else {
+      output = []
+      return
     }
     
+    var sortedArray: [Element] = []
+    
+    var inOrderTraversal = InOrderTreeTraversal<BinaryTree<Element>>()
+    inOrderTraversal.visit = { sortedArray.append($0.element) }
+    inOrderTraversal.traverse(tree)
+    
+    output = sortedArray
+    
+  }
+  
 }

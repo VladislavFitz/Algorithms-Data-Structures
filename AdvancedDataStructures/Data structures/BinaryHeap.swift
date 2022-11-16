@@ -14,34 +14,33 @@ import Foundation
  In a min heap, the key of P is less than or equal to the key of C.
  The node at the "top" of the heap (with no parents) is called the root node.
  */
-struct BinaryHeap<Element: Comparable> {
-  
+struct BinaryHeap<Element: Comparable & Equatable>: StatefulBinaryTree {
+    
   /// Defines the type of the heap: max or min
   let type: HeapType
   
   /// The array storing the heap's elements
   var elements: [Element] = []
-  
-  private init(_ elements: [Element] = [], direction: HeapType = .max) {
-    self.type = direction
-    self.elements = elements
-  }
-  
+    
   /**
    - elements: initial heap element(s)
    - direction: defines the type of the heap: max or min
    */
-  init(_ elements: Element..., direction: HeapType = .max) {
-    self.init(elements, direction: direction)
+  init(_ elements: Element..., type: HeapType = .max) {
+    self.init(elements, type: type)
+  }
+  
+  init(element: Element, left: BinaryHeap<Element>?, right: BinaryHeap<Element>?) {
+    self.init(element)
   }
   
   /**
    - elements: sequence containing the initial heap elements
    - direction: defines the type of the heap: max or min
    */
-  init<S: Sequence>(_ sequence: S, direction: HeapType = .max) where S.Element == Element {
+  init<S: Sequence>(_ sequence: S, type: HeapType = .max) where S.Element == Element {
     
-    self.type = direction
+    self.type = type
     
     for element in sequence {
       insert(element)
@@ -108,6 +107,10 @@ struct BinaryHeap<Element: Comparable> {
     return elements.first
   }
   
+  var element: Element {
+    return root!
+  }
+  
   /// Insert element into the heap
   /// - complexity: average: O(1), worst: O(log n)
   /// - parameter element: the element to insert
@@ -123,7 +126,6 @@ struct BinaryHeap<Element: Comparable> {
       elementIndex = parentIndex
       parentIndex = (elementIndex - 1) / 2
     }
-    
   }
   
   /// Remove element from the heap if present

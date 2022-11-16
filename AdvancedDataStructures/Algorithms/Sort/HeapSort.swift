@@ -28,7 +28,7 @@ class HeapSort<E: Comparable>: SortAlgorithm {
             return
         }
         
-        var heap = BinaryHeap(array, direction: .min)
+        var heap = BinaryHeap(array, type: .min)
         
         var sortedArray: [Element] = []
         

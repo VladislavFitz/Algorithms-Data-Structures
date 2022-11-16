@@ -14,24 +14,23 @@ class TreeTests: XCTestCase {
     
     func testInsertComplexity() {
                 
-        var tree = AVLTree<Int, Void>.empty
+        var tree = AVLTree<Int>.empty
         
-        for element in Array(0..<1000).shuffled() {
-            tree = tree.set((), for: element)
+        for element in (0..<1000).shuffled() {
+            tree = tree.insert(element)
         }
         
         XCTAssertLessThan(Double(tree.height), 1.45 * log2(Double(tree.count + 2)))
-        XCTAssertTrue(BinaryTreeVerifier.isCorrect(tree))
+        XCTAssertTrue(BinaryTreeChecker.isCorrect(tree))
         
     }
     
     func testBalancing() {
         
-        let keys = Array(0..<50).shuffled()
-        var tree = AVLTree<Int, Void>.empty
+        var tree = AVLTree<Int>.empty
         
-        for key in keys {
-            tree = tree.set((), for: key)
+        for element in (0..<50).shuffled() {
+            tree = tree.insert(element)
         }
         
         XCTAssertTrue(true)

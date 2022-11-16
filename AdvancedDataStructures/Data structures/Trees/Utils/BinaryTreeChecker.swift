@@ -1,5 +1,5 @@
 //
-//  BinaryTreeVerifier.swift
+//  BinaryTreeChecker.swift
 //  AdvancedDataStructures
 //
 //  Created by Vladislav on 11/11/2017.
@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct BinaryTreeVerifier {
+struct BinaryTreeChecker {
     
     static func isCorrect<T: BinaryTreeProtocol>(_ tree: T) -> Bool {
         
-        if let leftBranch = tree.left, (leftBranch.key >= tree.key || !isCorrect(leftBranch)) {
+        if let leftBranch = tree.left, (leftBranch.element >= tree.element || !isCorrect(leftBranch)) {
             return false
         } 
         
-        if let rightBranch = tree.right, (rightBranch.key < tree.key || !isCorrect(rightBranch))  {
+        if let rightBranch = tree.right, (rightBranch.element < tree.element || !isCorrect(rightBranch))  {
             return false
         }
         

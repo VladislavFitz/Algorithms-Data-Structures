@@ -12,16 +12,16 @@ import XCTest
 
 class RandomizedTreeTests: XCTestCase {
     
-    func generateTree(size: Int = 1000) -> RandomizedTree<Int, Void> {
+    func generateTree(size: Int = 1000) -> RandomizedTree<Int> {
         
         assert(size > 0)
         
         let shuffledArray = Array(0..<size).shuffled()
         
-        var tree = RandomizedTree<Int, Void>(key: shuffledArray.first!, value: (), left: .none, right: .none)
+        var tree = RandomizedTree<Int>(element: shuffledArray.first!, left: .none, right: .none)
         
         for key in shuffledArray.dropFirst() {
-            tree = .insert((), for: key, into: tree)
+            tree = .insert(key, into: tree)
         }
         
         return tree
@@ -33,8 +33,8 @@ class RandomizedTreeTests: XCTestCase {
         let tree = generateTree(size: 1000)
         
         var elements: [Int] = []
-        var inOrderTraversal = InOrderTreeTraversal<RandomizedTree<Int, Void>>()
-        inOrderTraversal.visit = { elements.append($0.key) }
+        var inOrderTraversal = InOrderTreeTraversal<RandomizedTree<Int>>()
+        inOrderTraversal.visit = { elements.append($0.element) }
         
         inOrderTraversal.traverse(tree)
         
@@ -46,20 +46,20 @@ class RandomizedTreeTests: XCTestCase {
         
         let array = Array(0..<1000).shuffled()
         
-        var tree = RandomizedTree<Int, Void>(key: array.first!, value: (), left: .none, right: .none)
+        var tree = RandomizedTree<Int>(element: array.first!, left: .none, right: .none)
         
-        for key in array.dropFirst() {
-            tree = .insert((), for: key, into: tree)
+        for element in array.dropFirst() {
+            tree = .insert(element, into: tree)
         }
         
-        for key in array.shuffled() {
-            XCTAssertTrue(tree.contains(key: key), "Tree doesn't contain \(key)")
+        for element in array.shuffled() {
+            XCTAssertTrue(tree.contains(element), "Tree doesn't contain \(element)")
         }
         
-        for key in array.shuffled() {
-            if let mutatedTree = RandomizedTree.removeValue(for: key, from: tree) {
+        for element in array.shuffled() {
+            if let mutatedTree = RandomizedTree.remove(element, from: tree) {
                 tree = mutatedTree
-                XCTAssertFalse(tree.contains(key: key))
+                XCTAssertFalse(tree.contains(element))
             }
         }
         

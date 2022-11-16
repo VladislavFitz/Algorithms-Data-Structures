@@ -10,7 +10,7 @@ import Foundation
 
 struct PostOrderTreeTraversal<Tree: BinaryTreeProtocol>: TreeTraversal {
     
-    var visit: (Tree) -> () = { print($0.key, terminator: " - ") }
+    var visit: (Tree) -> () = { print($0.element, terminator: " - ") }
     
     func traverse(_ tree: Tree) {
 
