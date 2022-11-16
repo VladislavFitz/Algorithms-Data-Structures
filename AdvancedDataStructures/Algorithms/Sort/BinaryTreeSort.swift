@@ -28,14 +28,14 @@ class BinaryTreeSort<E: Comparable & Equatable>: SortAlgorithm {
       return
     }
     
-    guard let tree = BinaryTree(array) else {
+    guard let tree = BinarySearchTree(array) else {
       output = []
       return
     }
     
     var sortedArray: [Element] = []
     
-    var inOrderTraversal = InOrderTreeTraversal<BinaryTree<Element>>()
+    var inOrderTraversal = InOrderTreeTraversal<BinarySearchTree<Element>>()
     inOrderTraversal.visit = { sortedArray.append($0.element) }
     inOrderTraversal.traverse(tree)
     

@@ -5,7 +5,7 @@ import Foundation
  Lookup, insertion, and deletion all take O(log n) time in both the average and worst cases, where n is the number of nodes in the tree prior to the operation.
  Insertions and deletions may require the tree to be rebalanced by one or more tree rotations.
  */
-enum AVLTree<Element: Comparable & Equatable>: BinaryTreeProtocol {
+enum AVLTree<Element: Comparable & Equatable>: StatelessBinaryTree {
     
   case empty
   indirect case node(element: Element, left: AVLTree, right: AVLTree)
@@ -123,7 +123,7 @@ enum AVLTree<Element: Comparable & Equatable>: BinaryTreeProtocol {
 //MARK: - Operations
 extension AVLTree {
   
-  func insert(_ element: Element) -> Self {
+  func inserting(_ element: Element) -> Self {
     switch self {
     case .empty:
       return .node(element: element,
@@ -134,10 +134,10 @@ extension AVLTree {
       if currentElement < element {
         return .node(element: currentElement,
                      left: left,
-                     right: right.insert(element)).balanced()
+                     right: right.inserting(element)).balanced()
       } else if currentElement > element {
         return .node(element: currentElement,
-                     left: left.insert(element),
+                     left: left.inserting(element),
                      right: right).balanced()
       } else {
         return self
@@ -145,7 +145,7 @@ extension AVLTree {
     }
   }
   
-  func remove(_ element: Element) -> Self? {
+  func removing(_ element: Element) -> Self? {
     
     // Returns tuple of min element of tree and tree without this min element
     func extractMin(tree: AVLTree) -> (min: Element?, tree: AVLTree) {
@@ -168,14 +168,14 @@ extension AVLTree {
 
     // If the required element is lower than the element of current node, return tree with updated left branch
     case .node(element: let currentElement, left: let left, right: let right) where element < currentElement:
-      let updatedLeft = left.remove(element) ?? .empty
+      let updatedLeft = left.removing(element) ?? .empty
       return AVLTree.node(element: currentElement,
                           left: updatedLeft,
                           right: right).balanced()
       
     // If thr required element is greater than the element of current node, return tree with updated right branch
     case .node(element: let currentElement, left: let left, right: let right) where element > currentElement:
-      let updatedRight = right.remove(element) ?? .empty
+      let updatedRight = right.removing(element) ?? .empty
       return AVLTree.node(element: currentElement,
                           left: left,
                           right: updatedRight).balanced()

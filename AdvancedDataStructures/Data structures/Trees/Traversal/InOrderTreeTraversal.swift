@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct InOrderTreeTraversal<Tree: BinaryTreeProtocol>: TreeTraversal {
+struct InOrderTreeTraversal<Tree: BinaryTree>: TreeTraversal {
     
     var visit: (Tree) -> () = { print($0.element, terminator: " - ") }
     

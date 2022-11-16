@@ -1,5 +1,5 @@
 //
-//  BinaryTreeProtocol.swift
+//  BinaryTree.swift
 //  AdvancedDataStructures
 //
 //  Created by Vladislav on 06/11/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BinaryTreeProtocol: CustomStringConvertible {
+protocol BinaryTree: CustomStringConvertible {
   
   associatedtype Element: Comparable & Equatable
   
@@ -28,7 +28,7 @@ protocol BinaryTreeProtocol: CustomStringConvertible {
   
 }
 
-extension BinaryTreeProtocol {
+extension BinaryTree {
   
   /// Binary tree factory function
   static func with(element: Element,

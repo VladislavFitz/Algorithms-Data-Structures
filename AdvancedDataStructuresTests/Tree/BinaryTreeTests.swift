@@ -1,5 +1,5 @@
 //
-//  BinaryTreeTests.swift
+//  BinarySearchTreeTests.swift
 //  AdvancedDataStructuresTests
 //
 //  Created by Vladislav on 04/11/2017.
@@ -10,15 +10,15 @@ import Foundation
 import XCTest
 @testable import AdvancedDataStructures
 
-class BinaryTreeTests: XCTestCase {
+class BinarySearchTreeTests: XCTestCase {
     
-    typealias TestTree = BinaryTree<Int>
+    typealias TestTree = BinarySearchTree<Int>
     
     func generateTree(size: Int = 100) -> TestTree {
         
         let shuffledArray = Array(0..<size).shuffled()
                 
-        return BinaryTree(shuffledArray)!
+        return BinarySearchTree(shuffledArray)!
     }
     
     func testCorrectness() {
@@ -113,7 +113,7 @@ class BinaryTreeTests: XCTestCase {
         var elements: [Int] = []
         preOrderTraversal.visit = { elements.append($0.element) }
         
-        var tree = BinaryTree([3, 1, 5, 0, 2, 4, 6])!
+        var tree = BinarySearchTree([3, 1, 5, 0, 2, 4, 6])!
         
         preOrderTraversal.traverse(tree)
         XCTAssertEqual([3, 1, 0, 2, 5, 4, 6], elements)
@@ -131,7 +131,7 @@ class BinaryTreeTests: XCTestCase {
         var elements: [Int] = []
         preOrderTraversal.visit = { elements.append($0.element) }
         
-        var tree = BinaryTree([3, 1, 5, 0, 2, 4, 6])!
+        var tree = BinarySearchTree([3, 1, 5, 0, 2, 4, 6])!
         
         preOrderTraversal.traverse(tree)
         XCTAssertEqual([3, 1, 0, 2, 5, 4, 6], elements)

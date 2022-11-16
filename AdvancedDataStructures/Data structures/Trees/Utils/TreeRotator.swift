@@ -14,7 +14,7 @@ enum RotationDirection {
 
 struct TreeRotator {
   
-  static func rotate<T: BinaryTreeProtocol>(_ tree: T, _ direction: RotationDirection) -> T {
+  static func rotate<T: BinaryTree>(_ tree: T, _ direction: RotationDirection) -> T {
     
     switch direction {
       
@@ -36,7 +36,7 @@ struct TreeRotator {
     
   }
   
-  static func rotate<T: BinaryTreeProtocol>(_ tree: T, _ directions: [RotationDirection]) -> T {
+  static func rotate<T: BinaryTree>(_ tree: T, _ directions: [RotationDirection]) -> T {
     
     var resultTree = tree
     
@@ -50,7 +50,7 @@ struct TreeRotator {
   
 }
 
-extension BinaryTreeProtocol {
+extension BinaryTree {
   
   func rotated(by direction: RotationDirection) -> Self {
     return TreeRotator.rotate(self, direction)

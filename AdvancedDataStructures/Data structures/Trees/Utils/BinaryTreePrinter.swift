@@ -145,7 +145,7 @@ struct BinaryTreePrinter {
     
 }
 
-extension BinaryTreeProtocol {
+extension BinaryTree {
     
     var description: String {
         

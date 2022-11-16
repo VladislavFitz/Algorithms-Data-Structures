@@ -1,5 +1,5 @@
 //
-//  BinaryTree.swift
+//  BinarySearchTree.swift
 //  AdvancedDataStructures
 //
 //  Created by Vladislav Fitc on 24.10.17.
@@ -8,31 +8,31 @@
 
 import Foundation
 
-final class BinaryTree<Element: Comparable & Equatable>: BinaryTreeWithParentProtocol {
+final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithParentProtocol {
   
   var element: Element
   
-  private(set) var left: BinaryTree? {
+  private(set) var left: BinarySearchTree? {
     didSet {
       left?.parent = self
     }
   }
   
-  private(set) var right: BinaryTree? {
+  private(set) var right: BinarySearchTree? {
     didSet {
       right?.parent = self
     }
   }
   
-  weak var parent: BinaryTree?
+  weak var parent: BinarySearchTree?
   
-  init(element: Element, left: BinaryTree?, right: BinaryTree?) {
+  init(element: Element, left: BinarySearchTree?, right: BinarySearchTree?) {
     self.element = element
     self.left = left
     self.right = right
   }
   
-  init(element: Element, left: BinaryTree? = .none, right: BinaryTree? = .none, parent: BinaryTree?) {
+  init(element: Element, left: BinarySearchTree? = .none, right: BinarySearchTree? = .none, parent: BinarySearchTree?) {
     self.element = element
     self.left = left
     self.right = right
@@ -50,7 +50,7 @@ final class BinaryTree<Element: Comparable & Equatable>: BinaryTreeWithParentPro
       if let leftBranch = self.left {
         leftBranch.insert(element)
       } else {
-        self.left = BinaryTree(element: element,
+        self.left = BinarySearchTree(element: element,
                                parent: self)
       }
       
@@ -59,7 +59,7 @@ final class BinaryTree<Element: Comparable & Equatable>: BinaryTreeWithParentPro
       if let rightBranch = self.right {
         rightBranch.insert(element)
       } else {
-        self.right = BinaryTree(element: element,
+        self.right = BinarySearchTree(element: element,
                                 parent: self)
       }
       

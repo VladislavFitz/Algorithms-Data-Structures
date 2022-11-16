@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RandomizedTree<Element: Comparable & Equatable>: BinaryTreeProtocol {
+final class RandomizedTree<Element: Comparable & Equatable>: StatefulBinaryTree {
   
   var element: Element
   var left: RandomizedTree?
@@ -23,12 +23,12 @@ final class RandomizedTree<Element: Comparable & Equatable>: BinaryTreeProtocol 
     self.size = 1
   }
   
-  func insert(_ element: Element) -> RandomizedTree {
-    return .insert(element, into: self)
+  func insert(_ element: Element) {
+    _ = Self.insert(element, into: self)
   }
   
-  func remove(_ element: Element) -> RandomizedTree? {
-    return .remove(element, from: self)
+  func remove(_ element: Element) {
+    _ = Self.remove(element, from: self)
   }
   
   var nodeDescription: String {

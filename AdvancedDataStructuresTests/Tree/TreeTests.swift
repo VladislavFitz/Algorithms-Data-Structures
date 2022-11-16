@@ -17,7 +17,7 @@ class TreeTests: XCTestCase {
         var tree = AVLTree<Int>.empty
         
         for element in (0..<1000).shuffled() {
-            tree = tree.insert(element)
+            tree = tree.inserting(element)
         }
         
         XCTAssertLessThan(Double(tree.height), 1.45 * log2(Double(tree.count + 2)))
@@ -30,7 +30,7 @@ class TreeTests: XCTestCase {
         var tree = AVLTree<Int>.empty
         
         for element in (0..<50).shuffled() {
-            tree = tree.insert(element)
+            tree = tree.inserting(element)
         }
         
         XCTAssertTrue(true)

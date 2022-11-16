@@ -18,7 +18,7 @@ class AVLTreeTests: XCTestCase {
         var tree = AVLTree<Int>.empty
         
         array.forEach { element in
-            tree = tree.insert(element)
+            tree = tree.inserting(element)
             XCTAssertTrue(tree.isBalanced, "Not balanced: \n \(tree)")
         }
         
@@ -35,12 +35,12 @@ class AVLTreeTests: XCTestCase {
         var tree = AVLTree<Int>.empty
 
         array.forEach { element in
-            tree = tree.insert(element)
+            tree = tree.inserting(element)
         }
         
         for element in array.shuffled() {
             
-            guard let updatedTree = tree.remove(element) else {
+            guard let updatedTree = tree.removing(element) else {
                 break
             }
             

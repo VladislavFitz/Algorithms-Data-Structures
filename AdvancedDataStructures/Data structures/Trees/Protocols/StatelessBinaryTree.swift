@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol StatelessBinaryTree: BinaryTreeProtocol {
+protocol StatelessBinaryTree: BinaryTree {
  
   /// Insert element into the tree
   /// - returns: the update tree

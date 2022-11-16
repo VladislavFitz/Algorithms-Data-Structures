@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol StatefulBinaryTree: BinaryTreeProtocol {
+protocol StatefulBinaryTree: BinaryTree {
   
   /// Insert element into the tree
   mutating func insert(_ element: Element)

@@ -10,7 +10,7 @@ import Foundation
 
 protocol TreeTraversal {
 
-    associatedtype Tree: BinaryTreeProtocol
+    associatedtype Tree: BinaryTree
     
     var visit: (Tree) -> () { get }
     func traverse(_ tree: Tree)

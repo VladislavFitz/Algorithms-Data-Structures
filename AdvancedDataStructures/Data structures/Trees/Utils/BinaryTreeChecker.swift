@@ -10,7 +10,7 @@ import Foundation
 
 struct BinaryTreeChecker {
     
-    static func isCorrect<T: BinaryTreeProtocol>(_ tree: T) -> Bool {
+    static func isCorrect<T: BinaryTree>(_ tree: T) -> Bool {
         
         if let leftBranch = tree.left, (leftBranch.element >= tree.element || !isCorrect(leftBranch)) {
             return false
