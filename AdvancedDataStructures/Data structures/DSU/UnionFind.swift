@@ -1,152 +1,109 @@
-//
-//  DSU.swift
-//  AdvancedDataStructures
-//
-//  Created by Vladislav Fitc on 09.10.16.
-//  Copyright © 2016 Fitc. All rights reserved.
-//
-
 import Foundation
 
-enum UnionFindError<Element: Hashable>: Error {
-    case unexpectedElement(Element)
-}
-
-struct UnionFind<Element: Hashable> {
+///  A data structure that stores a collection of disjoint (non-overlapping) sets.
+///  Equivalently, it stores a partition of a set into disjoint subsets.
+///  It provides operations for adding new sets, merging sets (replacing them by their union), and finding a representative member of a set.
+///  The last operation makes it possible to find out efficiently if any two elements are in the same or different sets.
+struct UnionFind {
     
-    private var elementsIndexes: [Element: Int] = [:]
-    private var parent: [Int] = []
+  /// Defines the parental relationship between the elements
+  /// parents[i] = j means that j is the parent element of i
+  /// parents[x] = x means that the x element is a singleton
+  private var parents: [Int]
+  
+  /// - parameter capacity: the max count of elements
+  init(capacity: Int = 1000) {
+    parents = .init(repeating: -1, count: capacity)
+  }
+  
+  /// Make a  set with a given element
+  /// If the element is already a part of the set, it detaches the element from its parent
+  /// - parameter element: the givent element
+  /// - complexity: O(1)
+  mutating func makeSet(_ element: Int) {
+    parents[element] = element
+  }
+  
+  /// Find a root (representative) of the set to which the element belongs
+  /// - parameter element: the given element
+  /// - complexity: O(1) (amortized)
+  mutating func find(_ element: Int) -> Int {
+    let parent = parents[element]
     
-    init(sets: [[Element]] = []) {
-        for set in sets {
-            addSet(with: set, united: true)
-        }
+    if parent == element {
+      return parent
     }
     
-    init(set: [Element], united: Bool = false) {
-        addSet(with: set, united: united)
+    let grandParent = find(parent)
+    // path compression while looking for the parent
+    parents[element] = grandParent
+    return grandParent
+  }
+  
+  /// Unite two elements
+  /// - parameter lElement: first element to unite
+  /// - parameter rElement: second element to unite
+  /// - complexity: O(1) amortized
+  mutating func unite(_ lElement: Int, _ rElement: Int) {
+    let lElementParent = find(lElement)
+    let rElementParent = find(rElement)
+    
+    if lElementParent == rElementParent {
+      return
     }
     
-    mutating func addSet(with element: Element) {
-        let elementIndex = parent.count
-        elementsIndexes[element] = elementIndex
-        parent.append(elementIndex)
+    if arc4random() % 2 == 0 {
+      parents[lElementParent] = rElementParent
+    } else {
+      parents[rElementParent] = lElementParent
     }
-    
-    mutating func addSet(with elements: [Element], united: Bool = false) {
-        if united {
-            
-            guard let firstElement = elements.first else { return }
-            
-            addSet(with: firstElement)
-            
-            for element in elements.dropFirst() {
-                addSet(with: element)
-                unite(element, with: firstElement)
-            }
-            
-        } else {
-            elements.forEach { addSet(with: $0) }
-        }
+  }
+  
+  /// Return bool value indicating if the elements belong to the same set
+  /// - complexity: O(n)
+  public mutating func areJoint(_ elements: Int...) -> Bool {
+    return areJoint(elements)
+  }
+  
+  /// Return bool value indicating if the elements belong to the same set
+  /// - complexity: O(n)
+  public mutating func areJoint<S: Sequence>(_ elements: S) -> Bool where S.Element == Int {
+    let elements = Array(elements)
+    guard let firstElement = elements.first else {
+      return false
     }
-    
-    private mutating func findParentIndex(ofElementWithIndex elementIndex: Int) -> Int? {
-        
-        let parentIndex = parent[elementIndex]
-        
-        if parentIndex == elementIndex {
-            
-            return elementIndex
-            
-        } else {
-            
-            if let parentOfParentIndex = findParentIndex(ofElementWithIndex: parentIndex) {
-                
-                parent[elementIndex] = parentOfParentIndex
-                return parentOfParentIndex
-
-            } else {
-                return .none
-            }
-            
-        }
-        
+    let firstElementParent = find(firstElement)
+    return elements
+      .dropFirst()
+      .allSatisfy { element in find(element) == firstElementParent }
+  }
+  
+  /// Whether the set contains the element
+  /// - parameter element: the given element
+  /// - complexity: O(1)
+  public func contains(_ element: Int) -> Bool {
+    return parents[element] != -1
+  }
+  
+  /// Returns all the disjoint sets
+  /// - complexity: O(n)
+  public mutating func allSets() -> [Set<Int>] {
+    var output = [Int: Set<Int>]()
+    for element in parents where element != -1 {
+      let root = find(element)
+      output[root] = (output[root] ?? []).union([element])
     }
-    
-    private mutating func setID(of element: Element) -> Int? {
-        
-        guard let elementIndex = elementsIndexes[element] else { return .none }
-        guard let parentIndex = findParentIndex(ofElementWithIndex: elementIndex) else { return .none }
-        
-        return parentIndex
-        
-    }
-    
-    private mutating func unite(_ lElementIndex: Int, _ rElementIndex: Int) {
-        
-        guard let lElementParentIndex = findParentIndex(ofElementWithIndex: lElementIndex) else { return }
-        guard let rElementParentIndex = findParentIndex(ofElementWithIndex: rElementIndex) else { return }
-        
-        if arc4random() % 2 == 0 {
-            parent[lElementParentIndex] = rElementParentIndex
-        } else {
-            parent[rElementParentIndex] = lElementParentIndex
-        }
-        
-    }
-    
-    public mutating func unite(_ lElement: Element, with rElement: Element) {
-        
-        guard let lElementIndex = elementsIndexes[lElement] else { return }
-        guard let rElementIndex = elementsIndexes[rElement] else { return }
-        
-        unite(lElementIndex, rElementIndex)
-        
-    }
-    
-    public mutating func areInSameSet(_ lElement: Element, _ rElement: Element) -> Bool {
-        
-        guard let lElementParentIndex = setID(of: lElement) else { return false }
-        guard let rElementParentIndex = setID(of: rElement) else { return false }
-
-        return lElementParentIndex == rElementParentIndex
-        
-    }
-    
-    public func contains(_ element: Element) -> Bool {
-        return elementsIndexes[element] != nil
-    }
-    
-    var count: Int {
-        return elementsIndexes.count
-    }
-    
-    var setCount: Int {
-        return parent.enumerated().filter({ $0 == $1 }).count
-    }
-    
-}
-
-extension UnionFind: CustomDebugStringConvertible {
-    
-    var debugDescription: String {
-        
-        var copy = self
-        
-        let values = copy.elementsIndexes.map { (arg) -> (Element, Int) in
-            let (element, index) = arg
-            return (element, copy.findParentIndex(ofElementWithIndex: index)!)
-        }.reduce(into: Dictionary<Int, [Element]>()) { (res, arg) in
-            let (element, index) = arg
-            if var arr = res[index] {
-                arr.append(element)
-                res[index] = arr
-            } else {
-                res[index] = [element]
-            }
-        }.map({ $0.value })
-        
-        return "\(values)"
-    }
-    
+    return Array(output.values)
+  }
+  
+  /// Number of elements in all sets
+  var count: Int {
+    return parents.filter { $0 >= 0 }.count
+  }
+  
+  /// Number of sets
+  var setCount: Int {
+    return Set(parents.filter { $0 >= 0 }).count
+  }
+  
 }

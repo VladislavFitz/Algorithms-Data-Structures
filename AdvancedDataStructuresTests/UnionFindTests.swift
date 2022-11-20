@@ -11,18 +11,22 @@ import Foundation
 import XCTest
 
 class UnionFindTests: XCTestCase {
+  
+  func testConstruction() {
     
-    func testConstruction() {
-        
-        var uf = UnionFind<String>(sets: [["A", "C"], ["B"]])
-        
-        XCTAssertTrue(uf.areInSameSet("A", "C"))
-        XCTAssertFalse(uf.areInSameSet("B", "C"))
-        XCTAssertFalse(uf.areInSameSet("A", "B"))
-        
-        XCTAssertEqual(uf.count, 3)
-        XCTAssertEqual(uf.setCount, 2)
-        
-    }
+    var uf = UnionFind()
+    uf.makeSet(1)
+    uf.makeSet(2)
+    uf.makeSet(3)
+    uf.unite(1, 3)
     
+    XCTAssertTrue(uf.areJoint(1, 3))
+    XCTAssertFalse(uf.areJoint(2, 3))
+    XCTAssertFalse(uf.areJoint(1, 2))
+    
+    XCTAssertEqual(uf.count, 3)
+    XCTAssertEqual(uf.setCount, 2)
+    
+  }
+  
 }

@@ -67,8 +67,6 @@ extension BinaryTreeWithParentProtocol {
 extension BinaryTreeWithParentProtocol {
   
   var parentRelation: ParentRelation {
-    
-    
     guard let existingParent = parent else {
       return .root
     }

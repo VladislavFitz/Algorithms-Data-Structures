@@ -9,94 +9,132 @@
 import Foundation
 
 protocol GraphRepresentation {
-    var nodesCount: Int { get }
+  var nodesCount: Int { get }
 }
 
 protocol DirectedGraph: GraphRepresentation {
-    
-    func hasArc(from nodeA: Int, to nodeB: Int) -> Bool
-    mutating func setArc(from nodeA: Int, to nodeB: Int)
-    mutating func removeArc(from nodeA: Int, to nodeB: Int)
-    
+  
+  func hasEdge(from nodeA: Int, to nodeB: Int) -> Bool
+  mutating func makeEdge(from nodeA: Int, to nodeB: Int)
+  mutating func removeEdge(from nodeA: Int, to nodeB: Int)
+  
 }
 
 protocol WeightedGraph: DirectedGraph {
-    
-    func weightOfArc(from nodeA: Int, to nodeB: Int) -> Int
-    mutating func setArc(from nodeA: Int, to nodeB: Int, withWeight weight: Int)
+  
+  func edgeWeight(from nodeA: Int, to nodeB: Int) -> Int
+  mutating func makeEdge(from nodeA: Int, to nodeB: Int, withWeight weight: Int)
+  
+}
 
+struct Edge: Hashable {
+  let from: Int
+  let to: Int
+  let weight: Int
+  
+  init(from: Int, to: Int, weight: Int = 1) {
+    self.from = from
+    self.to = to
+    self.weight = weight
+  }
+}
+
+extension Edge: CustomStringConvertible {
+  
+  var description: String {
+    "(\(from) -> \(to)) { \(weight) }"
+  }
+  
 }
 
 
 struct AdjacencyMatrix: WeightedGraph {
-    
-    private var matrix: Array<Array<Int>>
-    
-    var nodesCount: Int {
-        return matrix.count
+  
+  private var matrix: Array<Array<Int>>
+  
+  subscript(_ src: Int, _ dest:Int) -> Int {
+    get {
+      return matrix[src][dest]
     }
-    
-    func neighbours(ofVertex vertex: Int) -> [Int] {
-        return matrix[vertex].enumerated().filter({ $0.element != 0 }).map({ $0.offset })
+    set {
+      matrix[src][dest] = newValue
     }
-    
-    init(nodesCount: Int) {
-        self.matrix = Array<Array<Int>>(repeating: Array<Int>(repeating: 0, count: nodesCount), count: nodesCount)
+  }
+  
+  var nodesCount: Int {
+    return matrix.count
+  }
+  
+  func neighbours(ofVertex vertex: Int) -> [Int] {
+    return matrix[vertex].enumerated().filter({ $0.element != 0 }).map({ $0.offset })
+  }
+  
+  init(nodesCount: Int) {
+    self.matrix = Array<Array<Int>>(repeating: Array<Int>(repeating: 0, count: nodesCount), count: nodesCount)
+  }
+  
+  func hasEdge(from nodeA: Int, to nodeB: Int) -> Bool {
+    return matrix[nodeA][nodeB] > 0
+  }
+  
+  mutating func removeEdge(from nodeA: Int, to nodeB: Int) {
+    matrix[nodeA][nodeB] = 0
+    matrix[nodeB][nodeA] = 0
+  }
+  
+  func edgeWeight(from nodeA: Int, to nodeB: Int) -> Int {
+    return matrix[nodeA][nodeB]
+  }
+  
+  mutating func makeEdge(from nodeA: Int, to nodeB: Int) {
+    makeEdge(from: nodeA, to: nodeB, withWeight: 1)
+  }
+  
+  mutating func makeEdge(from nodeA: Int, to nodeB: Int, withWeight weight: Int) {
+    matrix[nodeA][nodeB] = weight
+    matrix[nodeB][nodeA] = weight
+  }
+  
+  func getEdges() -> [Edge] {
+    var output: [Edge] = []
+    for (src, row) in matrix.enumerated() {
+      for (dst, weight) in row.enumerated() where weight > 0 {
+        output.append(Edge(from: src, to: dst, weight: weight))
+      }
     }
-    
-    func hasArc(from nodeA: Int, to nodeB: Int) -> Bool {
-        return matrix[nodeA][nodeB] > 0
-    }
-    
-    mutating func setArc(from nodeA: Int, to nodeB: Int) {
-        matrix[nodeA][nodeB] = 1
-        matrix[nodeB][nodeA] = 1
-    }
-    
-    mutating func removeArc(from nodeA: Int, to nodeB: Int) {
-        matrix[nodeA][nodeB] = 0
-        matrix[nodeB][nodeA] = 0
-    }
-    
-    func weightOfArc(from nodeA: Int, to nodeB: Int) -> Int {
-        return matrix[nodeA][nodeB]
-    }
-    
-    mutating func setArc(from nodeA: Int, to nodeB: Int, withWeight weight: Int) {
-        matrix[nodeA][nodeB] = weight
-        matrix[nodeB][nodeA] = weight
-    }
-    
-    subscript(key: Int) -> [Int] {
-        return matrix[key]
-    }
-    
+    return output
+  }
+  
+  subscript(key: Int) -> [Int] {
+    return matrix[key]
+  }
+  
 }
 
 struct AdjacencyList: GraphRepresentation {
-    
-    private var list: [Set<Int>]
-    
-    var nodesCount: Int {
-        return list.count
-    }
-    
-    init(nodesCount: Int) {
-        self.list = Array(repeating: [], count: nodesCount)
-    }
-    
-    func hasArc(between nodeA: Int, and nodeB: Int) -> Bool {
-        return list[nodeA].contains(nodeB)
-    }
-    
-    mutating func setArc(between nodeA: Int, and nodeB: Int) {
-        list[nodeA].insert(nodeB)
-        list[nodeB].insert(nodeA)
-    }
-    
-    mutating func removeArc(between nodeA: Int, and nodeB: Int) {
-        list[nodeA].remove(nodeB)
-        list[nodeB].remove(nodeA)
-    }
-    
+  
+  private var list: [Set<Int>]
+  
+  var nodesCount: Int {
+    return list.count
+  }
+  
+  init(nodesCount: Int) {
+    self.list = Array(repeating: [], count: nodesCount)
+  }
+  
+  func hasArc(between nodeA: Int, and nodeB: Int) -> Bool {
+    return list[nodeA].contains(nodeB)
+  }
+  
+  mutating func makeEdge(from nodeA: Int, to nodeB: Int) {
+    list[nodeA].insert(nodeB)
+    list[nodeB].insert(nodeA)
+  }
+  
+  mutating func removeEdge(from nodeA: Int, to nodeB: Int) {
+    list[nodeA].remove(nodeB)
+    list[nodeB].remove(nodeA)
+  }
+  
 }

@@ -44,6 +44,9 @@
 		AF5397C329252BEA007A9208 /* StatefulBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5397C229252BEA007A9208 /* StatefulBinaryTree.swift */; };
 		AF5397C429252DBD007A9208 /* StatefulBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5397C229252BEA007A9208 /* StatefulBinaryTree.swift */; };
 		AF5397C529252DC1007A9208 /* StatelessBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5397C029252BE0007A9208 /* StatelessBinaryTree.swift */; };
+		AF5397C72929A6C3007A9208 /* KruskalAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5397C62929A6C3007A9208 /* KruskalAlgorithm.swift */; };
+		AF5397C9292AA58B007A9208 /* KruskalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5397C8292AA58B007A9208 /* KruskalTests.swift */; };
+		AF5397CA292AA774007A9208 /* KruskalAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5397C62929A6C3007A9208 /* KruskalAlgorithm.swift */; };
 		AFA2F1DB1FC1E05D00A34177 /* ThreeSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA2F1DA1FC1E05D00A34177 /* ThreeSum.swift */; };
 		AFA2F1DD1FC1E07B00A34177 /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA2F1DC1FC1E07B00A34177 /* Algorithm.swift */; };
 		AFA2F1DF1FC1F62D00A34177 /* ThreeSumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA2F1DE1FC1F62D00A34177 /* ThreeSumTests.swift */; };
@@ -127,6 +130,8 @@
 		51AD9EC31FB11E11008D4FE7 /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
 		AF5397C029252BE0007A9208 /* StatelessBinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatelessBinaryTree.swift; sourceTree = "<group>"; };
 		AF5397C229252BEA007A9208 /* StatefulBinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulBinaryTree.swift; sourceTree = "<group>"; };
+		AF5397C62929A6C3007A9208 /* KruskalAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KruskalAlgorithm.swift; sourceTree = "<group>"; };
+		AF5397C8292AA58B007A9208 /* KruskalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KruskalTests.swift; sourceTree = "<group>"; };
 		AFA2F1DA1FC1E05D00A34177 /* ThreeSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeSum.swift; sourceTree = "<group>"; };
 		AFA2F1DC1FC1E07B00A34177 /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		AFA2F1DE1FC1F62D00A34177 /* ThreeSumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeSumTests.swift; sourceTree = "<group>"; };
@@ -239,7 +244,6 @@
 				F7510E8F1DADA754003EC1E4 /* Trees */,
 				516475EE1FB797FB006D76BA /* DSU */,
 				516475EC1FB797E2006D76BA /* Graph */,
-				F75A6B4A1FC37FF300C834ED /* BinaryHeap.swift */,
 			);
 			path = "Data structures";
 			sourceTree = "<group>";
@@ -267,6 +271,7 @@
 				AFA2F1DC1FC1E07B00A34177 /* Algorithm.swift */,
 				F7A7868A1FA27C3E00106C89 /* Sort */,
 				AFA2F1EC1FC20B4000A34177 /* DijkstraAlgorithm.swift */,
+				AF5397C62929A6C3007A9208 /* KruskalAlgorithm.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				AFA2F1EE1FC2152F00A34177 /* DijkstraTests.swift */,
 				F740013F1FC4DC98000EEA8E /* BFSTests.swift */,
 				F74001411FC4DCA1000EEA8E /* DFSTests.swift */,
+				AF5397C8292AA58B007A9208 /* KruskalTests.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				516475FB1FB7C8A7006D76BA /* Utils */,
 				5113A2471FAF4E370081B583 /* Traversal */,
 				F792A41C1F9EA57F00E1FFD0 /* BinarySearchTree.swift */,
+				F75A6B4A1FC37FF300C834ED /* BinaryHeap.swift */,
 				F7510E901DADA754003EC1E4 /* AVLTree.swift */,
 				F787286F1E664341006FAEEF /* RedBlackTree.swift */,
 				516475FD1FB7C8D4006D76BA /* RandomizedTree.swift */,
@@ -491,6 +498,7 @@
 				AF5397C329252BEA007A9208 /* StatefulBinaryTree.swift in Sources */,
 				F72E9ADF1D56A677003FF5E7 /* main.swift in Sources */,
 				51AD9EC41FB11E11008D4FE7 /* BinaryTree.swift in Sources */,
+				AF5397C72929A6C3007A9208 /* KruskalAlgorithm.swift in Sources */,
 				F78698501FABD7EE000BA3B4 /* CombSort.swift in Sources */,
 				F786983A1FABCBCB000BA3B4 /* InsertionSort.swift in Sources */,
 				516475FE1FB7C8D4006D76BA /* RandomizedTree.swift in Sources */,
@@ -531,6 +539,7 @@
 				516476011FB83EDC006D76BA /* TreeRotator.swift in Sources */,
 				AFA2F1DF1FC1F62D00A34177 /* ThreeSumTests.swift in Sources */,
 				5113A2421FAE6B7E0081B583 /* BinarySearchTree.swift in Sources */,
+				AF5397C9292AA58B007A9208 /* KruskalTests.swift in Sources */,
 				AF5397C529252DC1007A9208 /* StatelessBinaryTree.swift in Sources */,
 				516475E91FB79010006D76BA /* BinaryTreeChecker.swift in Sources */,
 				AFFC292B1FCB6A260007A467 /* HeapSortTests.swift in Sources */,
@@ -543,6 +552,7 @@
 				516475F71FB79A3D006D76BA /* QuickSort.swift in Sources */,
 				AF5397C429252DBD007A9208 /* StatefulBinaryTree.swift in Sources */,
 				AFA2F1EF1FC2152F00A34177 /* DijkstraTests.swift in Sources */,
+				AF5397CA292AA774007A9208 /* KruskalAlgorithm.swift in Sources */,
 				516475E61FB7333E006D76BA /* BinaryTreeWithParentProtocol.swift in Sources */,
 				AFA2F1EA1FC2017A00A34177 /* FirstBadVersionTests.swift in Sources */,
 				AFA2F1E61FC1FA5400A34177 /* ThreeSum.swift in Sources */,

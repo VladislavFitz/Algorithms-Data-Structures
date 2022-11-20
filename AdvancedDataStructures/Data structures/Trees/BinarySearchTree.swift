@@ -68,60 +68,61 @@ final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithPar
   
   func remove(_ element: Element) {
     
-    if element == self.element {
-      
-      switch (left, right) {
-      case (.none, .none):
-        
-        switch parentRelation {
-        case .leftSubtree:
-          parent?.left = .none
+    guard element == self.element else {
+      if element < self.element {
+        left?.remove(element)
+      } else {
+        right?.remove(element)
+      }
+      return
+    }
           
-        case .rightSubtree:
-          parent?.right = .none
-          
-        case .root:
-          break
-        }
+    switch (left, right) {
+    case (.none, .none):
+      switch parentRelation {
+      case .leftSubtree:
+        parent?.left = .none
         
-      case (let leftSubtree, .none):
+      case .rightSubtree:
+        parent?.right = .none
         
-        switch parentRelation {
-        case .leftSubtree:
-          parent?.left = leftSubtree
-          
-        case .rightSubtree:
-          parent?.right = leftSubtree
-          
-        case .root:
-          break
-        }
-        
-      case (.none, let rightSubtree):
-        
-        switch parentRelation {
-        case .leftSubtree:
-          parent?.left = rightSubtree
-          
-        case .rightSubtree:
-          parent?.right = rightSubtree
-          
-        case .root:
-          break
-        }
-        
-      case (.some, .some):
-        let nextElement = self.next()!
-        remove(nextElement.element)
-        let nodeToRemove = findNode(for: self.element)
-        nodeToRemove?.element = nextElement.element
+      case .root:
+        break
       }
       
-    } else if element < self.element {
-      left?.remove(element)
-    } else {
-      right?.remove(element)
+    case (.some(let leftSubtree), .none):
+      
+      switch parentRelation {
+      case .leftSubtree:
+        parent?.left = leftSubtree
+        
+      case .rightSubtree:
+        parent?.right = leftSubtree
+        
+      case .root:
+        break
+      }
+      
+    case (.none, .some(let rightSubtree)):
+      
+      switch parentRelation {
+      case .leftSubtree:
+        parent?.left = rightSubtree
+        
+      case .rightSubtree:
+        parent?.right = rightSubtree
+        
+      case .root:
+        break
+      }
+      
+    case (.some, .some):
+      let nextElement = self.next()!
+      remove(nextElement.element)
+      let nodeToRemove = findNode(for: self.element)
+      nodeToRemove?.element = nextElement.element
     }
+      
     
   }
   
