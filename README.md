@@ -17,9 +17,10 @@ Algorithms and data structures implemented in Swift
 - [Post-order](AdvancedDataStructures/Data%20structures/Trees/Traversal/PostOrderTreeTraversal.swift)
 
 ### Graph algorithm
-- [Dijkstra](AdvancedDataStructures/Algorithms/DijkstraAlgorithm.swift)
-- [Depth-first search](AdvancedDataStructures/Data%20structures/Graph/DFS.swift)
-- [Breadth-first search](AdvancedDataStructures/Data%20structures/Graph/BFS.swift)
+- [Dijkstra](AdvancedDataStructures/Algorithms/DijkstraAlgorithm.swift) - finding the shortest paths between nodes in a graph.
+- [Depth-first search](AdvancedDataStructures/Data%20structures/Graph/DFS.swift) - traversing the graph, exploring as far as possible along each branch before backtracking.
+- [Breadth-first search](AdvancedDataStructures/Data%20structures/Graph/BFS.swift) - traversing the graph, exploring all nodes at the present depth prior to moving on to the nodes at the next depth level.
+- [Kruskal](AdvancedDataStructures/Algorithms/KruskalAlgorithm.swift) - finding a minimum [spanning forest](https://en.wikipedia.org/wiki/Spanning_tree) of an undirected edge-weighted graph.
 
 ## Data structures
 - [Binary heap](AdvancedDataStructures/Data%20structures/BinaryHeap.swift)
