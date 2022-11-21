@@ -51,6 +51,7 @@ extension BinaryTree {
   
   
   /// Returns the node with min element in the tree
+  /// - complexity: O(log n)
   func findMin() -> Self {
     var minNode = self
     
@@ -62,6 +63,7 @@ extension BinaryTree {
   }
   
   /// Returns the node with max element in the tree
+  /// - complexity: O(log n)
   func findMax() -> Self {
     var maxNode = self
     
@@ -73,6 +75,7 @@ extension BinaryTree {
   }
   
   /// Returns true if the tree contains the given element
+  /// - complexity: O(log n)
   func contains(_ element: Element) -> Bool {
     if element == self.element {
       return true
@@ -83,12 +86,31 @@ extension BinaryTree {
   
   /// Returns tree node corresponding to key.
   /// If element is not found returns nil.
+  /// - complexity: O(log n)
   func findNode(for element: Element) -> Self? {
     if element == self.element {
       return self
     }
     let branch = element > self.element ? right : left
     return branch?.findNode(for: element)
+  }
+  
+  /// - parameter element: the given element
+  /// - returns: The depth of the given element in the tree, nil If the element is not present
+  func depth(of element: Element) -> Int? {
+    func auxDepth(to element: Element, from node: Self?, intermediateDepth: Int) -> Int? {
+      guard let node = node else {
+        return nil
+      }
+      if node.element == element {
+        return intermediateDepth
+      }
+      let branch = element < node.element ? node.left : node.right
+      return auxDepth(to: element,
+                      from: branch,
+                      intermediateDepth: intermediateDepth + 1)
+    }
+    return auxDepth(to: element, from: self, intermediateDepth: 0)
   }
   
   /// Returns true if tree has no subtree

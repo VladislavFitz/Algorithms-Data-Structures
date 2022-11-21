@@ -1,5 +1,5 @@
 //
-//  BinaryTreeWithParentProtocol.swift
+//  BinaryTreeWithParent.swift
 //  AdvancedDataStructures
 //
 //  Created by Vladislav on 11/11/2017.
@@ -14,7 +14,7 @@ enum ParentRelation {
   case rightSubtree
 }
 
-protocol BinaryTreeWithParentProtocol: StatefulBinaryTree {
+protocol BinaryTreeWithParent: StatefulBinaryTree {
   
   var parent: Self? { get }
   
@@ -22,7 +22,7 @@ protocol BinaryTreeWithParentProtocol: StatefulBinaryTree {
   
 }
 
-extension BinaryTreeWithParentProtocol {
+extension BinaryTreeWithParent {
   
   static func with(element: Element, left: Self?, right: Self?, parent: Self?) -> Self {
     return Self(element: element, left: left, right: right, parent: parent)
@@ -64,7 +64,7 @@ extension BinaryTreeWithParentProtocol {
   
 }
 
-extension BinaryTreeWithParentProtocol {
+extension BinaryTreeWithParent {
   
   var parentRelation: ParentRelation {
     guard let existingParent = parent else {

@@ -19,7 +19,7 @@ enum Color {
  – Black node may have black parent
  */
 
-final class RedBlackTree<Element: Comparable & Equatable>: BinaryTreeWithParentProtocol {
+final class RedBlackTree<Element: Comparable & Equatable>: BinaryTreeWithParent {
   
   var element: Element
   var left: RedBlackTree?

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithParentProtocol {
+final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithParent {
   
   var element: Element
   
@@ -30,6 +30,8 @@ final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithPar
     self.element = element
     self.left = left
     self.right = right
+    left?.parent = self
+    right?.parent = self
   }
   
   init(element: Element, left: BinarySearchTree? = .none, right: BinarySearchTree? = .none, parent: BinarySearchTree?) {
@@ -51,7 +53,7 @@ final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithPar
         leftBranch.insert(element)
       } else {
         self.left = BinarySearchTree(element: element,
-                               parent: self)
+                                     parent: self)
       }
       
     } else {
@@ -60,7 +62,7 @@ final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithPar
         rightBranch.insert(element)
       } else {
         self.right = BinarySearchTree(element: element,
-                                parent: self)
+                                      parent: self)
       }
       
     }
@@ -76,7 +78,7 @@ final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithPar
       }
       return
     }
-          
+    
     switch (left, right) {
     case (.none, .none):
       switch parentRelation {
@@ -122,7 +124,7 @@ final class BinarySearchTree<Element: Comparable & Equatable>: BinaryTreeWithPar
       let nodeToRemove = findNode(for: self.element)
       nodeToRemove?.element = nextElement.element
     }
-      
+    
     
   }
   
